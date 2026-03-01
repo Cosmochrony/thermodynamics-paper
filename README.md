@@ -129,8 +129,6 @@ If you reference this work, please cite:
 
 > J. Beau, *Local Spectral Thermodynamics and the Einstein Equation as a Spectral Equilibrium Condition*, 2026.
 
-(Replace with DOI / venue when available.)
-
 ## Acknowledgements
 
 Portions of the editorial refinement benefited from iterative interactions with
