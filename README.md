@@ -121,9 +121,8 @@ paper/
 
 ## Links
 
-- 📄 Paper PDF: https://github.com/Cosmochrony/thermodynamics-paper/pdf/Thermodynamics.pdf
-- 🌐 Website: https://cosmochrony.org
-- 💻 GitHub organization: https://github.com/Cosmochrony
+- 📄 [Paper PDF](https://github.com/Cosmochrony/thermodynamics-paper/blob/main/pdf/Thermodynamics.pdf)
+- 🌐 Website: [cosmochrony.org](https://cosmochrony.org)
 
 ## Citation
 
