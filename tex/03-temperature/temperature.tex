@@ -1,0 +1,42 @@
+\section{Local spectral temperature}
+  \label{sec:local-temperature}
+
+  \subsection{Definition of \(\beta(x)\) as a local conjugate field}
+    \label{subsec:beta-definition}
+
+    We now introduce a local inverse temperature field \(\beta(x)\) as the conjugate variable to a local energy density
+    \(E_\Pi(x)\) associated with the projected sector.
+    The operational definition is the local first-law relation
+    \begin{equation}
+      \delta s_\Pi(x) = \beta(x)^{-1}\,\delta e_\Pi(x),
+      \label{eq:local-first-law-density}
+    \end{equation}
+    where \(s_\Pi(x)\) and \(e_\Pi(x)\) are local densities such that
+    \(
+    S_\Pi=\int_\Sigma s_\Pi(x)\,d^3x
+    \)
+    and
+    \(
+    E_\Pi=\int_\Sigma e_\Pi(x)\,d^3x
+    \)
+    in a chosen foliation.
+
+    Equation~\eqref{eq:local-first-law-density} is not assumed as microscopic dynamics.
+    It is a consistency condition defining \(\beta(x)\) as the local Lagrange multiplier that enforces the
+    compatibility between spectral entropy variations and admissible energy variations in the effective description.
+
+  \subsection{Geometric correction to \(\beta(x)^{-1}\)}
+    \label{subsec:beta-curvature}
+
+    To extract the curvature correction, we match the local spectral density~\eqref{eq:u-leading} to the local first-law
+    structure.
+    At fixed spectral scale \(t\), the flat reference defines \(\beta_0^{-1}\) through the leading \(2/t\) term, while the
+    first deviation is geometric.
+    This yields the decomposition
+    \begin{equation}
+      \beta(x)^{-1} = \beta_0^{-1} + \frac16 R(x) + O(\nabla^2 R, R^2),
+    \end{equation}
+    which is~\eqref{eq:beta-curvature}.
+    Here the higher terms are controlled by the higher heat-kernel coefficients and by derivative corrections.
+    The identification is local and covariant: curvature enters as the first correction to a locally defined spectral
+    temperature.

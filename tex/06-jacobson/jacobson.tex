@@ -1,0 +1,52 @@
+\section{Spectral Jacobson derivation}
+  \label{sec:spectral-jacobson}
+
+  \subsection{Equilibrium condition}
+    \label{subsec:equilibrium-condition}
+
+    Jacobson's derivation identifies Einstein's equation as the condition that the Clausius relation holds for all local
+    Rindler horizons:
+    \(
+    \delta S = \delta Q / T
+    \).
+    Here we impose the analogous spectral equilibrium requirement:
+    for any local horizon patch \(\mathcal{H}\),
+    \begin{equation}
+      \delta S_\Pi[\mathcal{H}]
+      =
+      \int_{\mathcal{H}} \beta^{-1}\,\delta E_\Pi ,
+      \label{eq:spectral-clausius}
+    \end{equation}
+    with \(\beta^{-1}\) the local spectral temperature and \(\delta E_\Pi\) the projected energy flux across \(\mathcal{H}\).
+
+  \subsection{Identification of the geometric response}
+    \label{subsec:einstein-response}
+
+    The entropy variation \(\delta S_\Pi\) is computed from the metric variation of the renormalized spectral
+    functional.
+    In the infrared-dominant local sector, the variation yields a term proportional to the Einstein tensor:
+    \begin{equation}
+      \delta S_\Pi
+      \supset
+      - \frac{1}{16\pi G}
+      \int_M d^4x \sqrt{g}\, G_{\mu\nu}\,\delta g^{\mu\nu},
+      \label{eq:deltaS-einstein-sector}
+    \end{equation}
+    with subleading higher-derivative and non-local contributions suppressed in the weak-curvature regime.
+
+    On the other hand, the energy flux term is fixed by matter through
+    \begin{equation}
+      \delta E_\Pi[\mathcal{H}] \;\widehat{=}\;
+      \int_{\mathcal{H}} T_{\mu\nu}\,\chi^\mu\, d\Sigma^\nu ,
+      \label{eq:energy-flux}
+    \end{equation}
+    where \(\chi^\mu\) is the local horizon generator and \(d\Sigma^\nu\) the induced horizon measure.
+
+    Requiring~\eqref{eq:spectral-clausius} to hold for arbitrary local patches and arbitrary variations then forces the
+    equality of the geometric and matter responses.
+    This yields the equilibrium condition
+    \begin{equation}
+      G_{\mu\nu} = 8\pi G\,T_{\mu\nu},
+      \label{eq:einstein-equilibrium}
+    \end{equation}
+    up to a cosmological term and controlled subleading corrections inherited from the higher heat-kernel sectors.

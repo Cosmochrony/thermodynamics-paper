@@ -1,0 +1,59 @@
+\section{Local spectral energy density}
+  \label{sec:local-spectral-energy}
+
+  \subsection{Heat kernel and local spectral densities}
+    \label{subsec:heat-kernel-local}
+
+    Let \(A_g\) be a positive Laplace-type operator.
+    We denote by \(K(x,y;t)\) its heat kernel,
+    \begin{equation}
+      (\partial_t + A_g)K(x,y;t)=0,
+      \qquad
+      K(x,y;0^+) = \delta(x,y).
+    \end{equation}
+    The diagonal \(K(x,x;t)\) defines a local spectral density at diffusion scale \(t\).
+    In \(d=4\), the short-time expansion reads
+    \begin{equation}
+      K(x,x;t)
+      \sim
+      \frac{1}{(4\pi t)^2}
+      \left(
+        a_0(x) + a_2(x)t + a_4(x)t^2 + \ldots
+      \right),
+      \label{eq:hk-local}
+    \end{equation}
+    with Seeley--DeWitt coefficients \(a_{2k}(x)\).
+
+    We define the local spectral energy density at scale \(t\) by
+    \begin{equation}
+      u(x;t) \equiv - \partial_t \log K(x,x;t).
+      \label{eq:u-def}
+    \end{equation}
+    This definition is minimal: it depends only on local spectral data.
+    It is also the natural local analogue of the canonical relation \(E=-\partial_\beta \log Z\),
+    once \(t\) is interpreted as a spectral coarse-graining parameter.
+
+  \subsection{Curvature expansion of \(u(x;t)\)}
+    \label{subsec:u-curvature-expansion}
+
+    Inserting~\eqref{eq:hk-local} into~\eqref{eq:u-def} yields, to leading orders,
+    \begin{equation}
+      u(x;t)
+      =
+      \frac{2}{t}
+      - \partial_t \log
+      \left(
+        a_0(x) + a_2(x)t + a_4(x)t^2 + \ldots
+      \right).
+    \end{equation}
+    For the minimal scalar Laplacian, \(a_0(x)=1\) and \(a_2(x)=\frac16 R(x)\).
+    Therefore,
+    \begin{equation}
+      u(x;t)
+      =
+      \frac{2}{t}
+      - \frac{1}{6}R(x) + O(t).
+      \label{eq:u-leading}
+    \end{equation}
+    The key point is structural: the first geometric correction is universally proportional to \(R(x)\),
+    with the coefficient \(\frac16\) fixed by the \(a_2\) term.
