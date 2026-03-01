@@ -37,8 +37,8 @@ The paper proceeds in three logical steps:
 1. **Spectral locality**  
    The diagonal heat kernel defines a local spectral energy density whose
    short-time expansion produces a curvature-dependent multiplier field.
-   The universal part ($\beta_0^{-1} = 2/t_*$) depends on the spectral
-   admissibility scale ($t_*$), which is a resolution parameter rather than a
+   The universal part $\beta_0^{-1} = 2/t_*$ depends on the spectral
+   admissibility scale $t_*$, which is a resolution parameter rather than a
    physical temperature.
 
 2. **Local spectral first law (compatibility condition)**  
