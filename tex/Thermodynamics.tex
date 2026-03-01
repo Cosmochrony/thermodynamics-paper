@@ -1,14 +1,56 @@
-%! Author = javarome
-%! Date = 01/03/2026
+\documentclass[12pt,a4paper]{article}
 
-% Preamble
-\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{enumitem}
 
-% Packages
-\usepackage{amsmath}
+% -------------------------------------------------------------------
+% Theorem environments
+% -------------------------------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
 
-% Document
+% -------------------------------------------------------------------
+% Macros
+% -------------------------------------------------------------------
+\newcommand{\Spi}{S_{\Pi}}
+\newcommand{\Ag}{A_g}
+\newcommand{\hk}{K}
+\newcommand{\tr}{\operatorname{Tr}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\half}{\tfrac{1}{2}}
+
+% -------------------------------------------------------------------
 \begin{document}
+
+  \title{Local Spectral Thermodynamics and the Einstein Equation\\
+  as a Spectral Equilibrium Condition}
+
+  \author{J\'{e}r\^{o}me Beau\\
+  \small Independent Researcher, France\\
+  \small \texttt{jerome.beau@cosmochrony.org}}
+
+  \date{Version beta2}
+  \maketitle
+
+  \input{abstract}
+
+  \noindent\textbf{Keywords:} spectral entropy, heat kernel, local temperature,
+  induced gravity, Einstein equation, spectral equilibrium, Seeley--DeWitt
+
+  \clearpage
+  \tableofcontents
+  \newpage
 
   \input{01-introduction/introduction}
   \input{02-energy/energy}
@@ -17,5 +59,57 @@
   \input{05-delta-s/delta-s}
   \input{06-jacobson/jacobson}
   \input{07-discussion/discussion}
+
+  \begin{thebibliography}{99}
+
+    \bibitem{Gravity20}
+    Beau, J.: Infrared Einstein response from a renormalized spectral entropy
+    functional. Preprint (2026). \href{https://doi.org/10.5281/zenodo.18819578}{10.5281/zenodo.18819578}
+
+    \bibitem{Spectral12}
+    Beau, J.: Relational Reconstruction of Spacetime Geometry from Graph Laplacians. Preprint (2026).
+    \href{https://doi.org/10.5281/zenodo.18356037}{10.5281/zenodo.18356037}
+
+    \bibitem{Cosmochrony}
+    Beau, J.: Cosmochrony: A Pre-Geometric Relational Framework for Emergent Physics. Preprint (2026).
+    \href{https://doi.org/10.5281/zenodo.17957509}{0.5281/zenodo.17957509}.
+
+    \bibitem{Jacobson1995}
+    Jacobson, T.: Thermodynamics of spacetime: the Einstein equation of state.
+    Phys.\ Rev.\ Lett.\ \textbf{75}, 1260--1263 (1995).
+
+    \bibitem{Vassilevich2003}
+    Vassilevich, D.V.: Heat kernel expansion: user's manual.
+    Phys.\ Rept.\ \textbf{388}, 279--360 (2003).
+
+    \bibitem{Gilkey1995}
+    Gilkey, P.B.: Invariance Theory, the Heat Equation, and the Atiyah--Singer
+    Index Theorem. CRC Press (1995).
+
+    \bibitem{ParkerToms2009}
+    Parker, L., Toms, D.: Quantum Field Theory in Curved Spacetime.
+    Cambridge University Press (2009).
+
+    \bibitem{BirrelDavies1982}
+    Birrell, N.D., Davies, P.C.W.: Quantum Fields in Curved Space.
+    Cambridge University Press (1982).
+
+    \bibitem{Sakharov1968}
+    Sakharov, A.D.: Vacuum quantum fluctuations in curved space and the theory
+    of gravitation. Sov.\ Phys.\ Dokl.\ \textbf{12}, 1040 (1968).
+
+    \bibitem{Wald1993}
+    Wald, R.M.: Black hole entropy is the Noether charge.
+    Phys.\ Rev.\ D \textbf{48}, R3427 (1993).
+
+    \bibitem{Perelman2002}
+    Perelman, G.: The entropy formula for the Ricci flow and its geometric
+    applications. arXiv:math/0211159 (2002).
+
+    \bibitem{BarvinskyVilkovisky1985}
+    Barvinsky, A.O., Vilkovisky, G.A.: The generalized Schwinger--DeWitt technique.
+    Phys.\ Rept.\ \textbf{119}, 1--74 (1985).
+
+  \end{thebibliography}
 
 \end{document}

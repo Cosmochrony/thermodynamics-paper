@@ -1,30 +1,73 @@
 \section{Introduction}
   \label{sec:intro}
 
-  This paper develops a local thermodynamic interpretation of spectral geometry.
-  The central object is the projective entropy functional
+  In a companion paper~\cite{Gravity20}, we established that the projective spectral
+  entropy functional
   \begin{equation}
-    S_\Pi[g] \equiv \frac12 \log \det{}' A_g ,
+    \Spi[g] \equiv \half\log\det' \Ag ,
+    \label{eq:Spi-def}
   \end{equation}
-  for a Laplace-type operator \(A_g\) on a smooth manifold \((M,g)\).
+  defined by a minimal Laplace-type operator $\Ag = -\nabla_g^2$ on a four-dimensional
+  Riemannian manifold $(M,g)$, admits a well-defined renormalized metric variation.
+  In the infrared-dominant regime where all dimensionless curvature invariants satisfy
+  $R\ell_\chi^2 \ll 1$, the renormalized spectral stress tensor decomposes as
+  \begin{equation}
+    \frac{\delta\Spi^{\mathrm ren}}{\delta g^{\mu\nu}}
+    = c_{\mathrm EH}({\mu})\,G_{\mu\nu} + c_\Lambda(\mu)\,g_{\mu\nu}
+    + \beta_{\mathrm loc}\,B_{\mu\nu} + T^{\mathrm non\text{-}loc}_{\mu\nu} + A_{\mu\nu},
+    \label{eq:decomp-paper1}
+  \end{equation}
+  with $c_{\mathrm EH} = (16\pi G_N)^{-1}$ identified via induced-gravity renormalization;
+  higher-derivative terms are suppressed by powers of $\ell_\chi^2$.
 
-  We show that the local heat-kernel structure naturally defines a local spectral energy density \(u(x;t)\).
-  Its curvature expansion induces a local inverse temperature field \(\beta(x)\) whose leading correction is geometric:
-  \begin{equation}
-    \beta(x)^{-1} = \beta_0^{-1} + \frac16 R(x) + \ldots
-    \label{eq:beta-curvature}
-  \end{equation}
-  This provides a direct parallel with local Unruh-type constructions, in which temperature acts as a local Lagrange
-  multiplier encoding the cost of maintaining a constrained description.
+  The goal of the present paper is to develop the local thermodynamic interpretation
+  of this structure.
+  We show that the diagonal heat kernel $\hk(x,x;t)$ defines a natural local spectral
+  energy density $u(x;t)$, whose curvature expansion produces a local multiplier field
+  $\beta(x)^{-1}$ with a universal part and a geometric correction proportional to
+  the scalar curvature $R(x)$.
+  This field plays the role of a local inverse temperature, defined purely from spectral
+  data, without thermodynamic input.
 
-  We then formulate a local spectral first law,
+  We then show that the compatibility between the geometric and matter sides of the
+  metric variation is precisely the condition
   \begin{equation}
-    \delta S_\Pi = \int_{\Sigma} \beta(x)^{-1}\,\delta E_\Pi(x)\, d^3x ,
-    \label{eq:local-first-law}
+    \delta\Spi = \int_\Sigma \beta(x)^{-1}\,\delta E_\Pi(x)\,\dd^3 x ,
+    \label{eq:first-law-intro}
   \end{equation}
-  and use it to derive an Einstein response as a condition of local spectral equilibrium.
-  In this sense, the field equation
-  \(
-  G_{\mu\nu} = 8\pi G\,T_{\mu\nu}
-  \)
-  appears as a thermodynamic compatibility constraint, rather than a fundamental postulate.
+  which we call the \emph{local spectral first law}.
+  This is not a postulate but a structural consequence of the Seeley--DeWitt
+  hierarchy.
+
+  Finally, we impose a spectral equilibrium principle: admissible geometries are
+  those for which $\Spi$ is stationary at fixed projected matter content.
+  The Euler--Lagrange equation of this constrained extremum is Einstein's field
+  equation, obtained without any reference to local horizons, Rindler observers,
+  or causal structure.
+
+  \medskip
+  \noindent\textbf{Relation to Jacobson's derivation.}
+  Jacobson~\cite{Jacobson1995} derived Einstein's equation by imposing the Clausius
+  relation $\delta S = \delta Q/T$ on all local Rindler horizons, using the
+  Bekenstein--Hawking entropy proportional to area.
+  The present derivation is structurally parallel but differs in three essential ways:
+  (i) the entropy functional is $\Spi$, not an area functional;
+  (ii) the temperature field $\beta(x)^{-1}$ is defined from spectral data, not from
+  Rindler kinematics;
+  (iii) the field equation arises from a variational extremum, not from a horizon
+  equilibrium condition.
+  The relation to Jacobson's derivation is discussed further in
+  Section~\ref{sec:relation-jacobson}.
+
+  \medskip
+  \noindent\textbf{Structure of the paper.}
+  Section~\ref{sec:spectral-locality} develops the local spectral energy density and
+  the multiplier field $\beta(x)$.
+  Section~\ref{sec:first-law} establishes the local spectral first law as a
+  compatibility theorem.
+  Section~\ref{sec:equilibrium} formulates the spectral equilibrium principle and
+  derives the Einstein equation.
+  Section~\ref{sec:normalization} verifies the normalization of the factor $8\pi G$.
+  Section~\ref{sec:relation-jacobson} discusses the relation to previous thermodynamic
+  derivations.
+  Section~\ref{sec:discussion} collects limitations and outlook.

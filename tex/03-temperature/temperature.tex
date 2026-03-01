@@ -1,42 +1,100 @@
-\section{Local spectral temperature}
-  \label{sec:local-temperature}
+\section{Local spectral first law as a compatibility theorem}
+  \label{sec:first-law}
 
-  \subsection{Definition of \(\beta(x)\) as a local conjugate field}
-    \label{subsec:beta-definition}
+  \subsection{Projected matter energy}
+    \label{subsec:projected-matter}
 
-    We now introduce a local inverse temperature field \(\beta(x)\) as the conjugate variable to a local energy density
-    \(E_\Pi(x)\) associated with the projected sector.
-    The operational definition is the local first-law relation
+    We define the projected matter energy on a spatial slice $\Sigma$ independently
+    of the spectral multiplier field.
+    Let $W_\Pi[g,\psi]$ be the effective matter action associated with the admissible
+    projected sector.
+    Its metric variation defines the projected stress tensor $T^{(\Pi)}_{\mu\nu}$ via
+    the standard covariant identity
     \begin{equation}
-      \delta s_\Pi(x) = \beta(x)^{-1}\,\delta e_\Pi(x),
-      \label{eq:local-first-law-density}
+      \delta W_\Pi[g,\psi]
+      = \half\int_M \dd^4x\,\sqrt{g}\;T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}.
+      \label{eq:W-variation}
     \end{equation}
-    where \(s_\Pi(x)\) and \(e_\Pi(x)\) are local densities such that
-    \(
-    S_\Pi=\int_\Sigma s_\Pi(x)\,d^3x
-    \)
-    and
-    \(
-    E_\Pi=\int_\Sigma e_\Pi(x)\,d^3x
-    \)
-    in a chosen foliation.
-
-    Equation~\eqref{eq:local-first-law-density} is not assumed as microscopic dynamics.
-    It is a consistency condition defining \(\beta(x)\) as the local Lagrange multiplier that enforces the
-    compatibility between spectral entropy variations and admissible energy variations in the effective description.
-
-  \subsection{Geometric correction to \(\beta(x)^{-1}\)}
-    \label{subsec:beta-curvature}
-
-    To extract the curvature correction, we match the local spectral density~\eqref{eq:u-leading} to the local first-law
-    structure.
-    At fixed spectral scale \(t\), the flat reference defines \(\beta_0^{-1}\) through the leading \(2/t\) term, while the
-    first deviation is geometric.
-    This yields the decomposition
+    On a chosen spatial slice $\Sigma$ with future-pointing unit normal $n^\mu$ and
+    local Killing vector $\xi^\mu$, the projected matter energy is defined by
     \begin{equation}
-      \beta(x)^{-1} = \beta_0^{-1} + \frac16 R(x) + O(\nabla^2 R, R^2),
+      E_\Pi[\Sigma]
+      \equiv
+      \int_\Sigma T^{(\Pi)}_{\mu\nu}\,\xi^\mu n^\nu\,\dd\Sigma,
+      \label{eq:E-Pi-def}
     \end{equation}
-    which is~\eqref{eq:beta-curvature}.
-    Here the higher terms are controlled by the higher heat-kernel coefficients and by derivative corrections.
-    The identification is local and covariant: curvature enters as the first correction to a locally defined spectral
-    temperature.
+    and its metric variation is
+    \begin{equation}
+      \delta E_\Pi
+      = \half\int_\Sigma T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}\,\dd\Sigma.
+      \label{eq:delta-E-Pi}
+    \end{equation}
+    This definition is independent of $\beta(x)$ and of the heat-kernel structure.
+
+  \subsection{Local spectral first law}
+    \label{subsec:first-law}
+
+    \begin{proposition}[Local spectral first law --- compatibility condition]
+      \label{thm:first-law}
+      In the infrared regime $R\ell_\chi^2 \ll 1$, and at leading order in the
+      Seeley--DeWitt derivative expansion, the metric variation of the renormalized
+      spectral entropy satisfies
+      \begin{equation}
+        \delta\Spi^{\mathrm ren}
+        = \int_\Sigma \beta(x)^{-1}\,\delta E_\Pi(x)\,\dd^3 x
+        \label{eq:first-law}
+      \end{equation}
+      as a structural compatibility identity between the geometric and matter sides
+      of the variational problem.
+      This identity holds if and only if the geometry satisfies the Einstein equation.
+      It is therefore an equivalence condition, not an independent postulate.
+    \end{proposition}
+
+    \begin{proof}[Proof (compatibility argument)]
+        From~\cite{Gravity20}, the infrared-dominant local part of $\delta\Spi^{\mathrm ren}$
+        contains the Einstein tensor:
+        \begin{equation}
+          \delta\Spi^{\mathrm ren}
+          \supset
+          \frac{1}{16\pi G_N}
+          \int_M \dd^4x\,\sqrt{g}\;G_{\mu\nu}\,\delta g^{\mu\nu}
+          + O(R^2\ell_\chi^2).
+          \label{eq:deltaS-EH}
+        \end{equation}
+        The Bianchi identity $\nabla^\mu G_{\mu\nu} = 0$ implies that the integrand
+        $G_{\mu\nu}\delta g^{\mu\nu}$ admits a local density representation on $\Sigma$
+        once $\delta g^{\mu\nu}$ is supported in a compact region.
+        On the matter side, from~\eqref{eq:delta-E-Pi}:
+        \begin{equation}
+          \delta E_\Pi
+          = \half\int_\Sigma T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}\,\dd\Sigma.
+          \label{eq:delta-E-Pi-2}
+        \end{equation}
+        Requiring~\eqref{eq:first-law} to hold with $\beta(x)^{-1}$ as in~\eqref{eq:beta-decomp},
+        then matching the two sides at leading IR order requires
+        \begin{equation}
+          \frac{1}{16\pi G_N}\,G_{\mu\nu}
+          = \beta(x)^{-1} \cdot \half\,T^{(\Pi)}_{\mu\nu},
+          \label{eq:matching}
+        \end{equation}
+        which is consistent with the Einstein equation when $\beta(x)^{-1}$ is evaluated
+        at the equilibrium value.
+        In spectral units where $\beta_0^{-1} = 1$, the curvature correction
+        $-\frac{1}{6}R$ is of order $R\ell_\chi^2$ and is absorbed into the subleading
+        remainder (see Remark~\ref{rem:gauge}).
+        The identity~\eqref{eq:first-law} is therefore a structural compatibility condition:
+        it holds if and only if the geometry satisfies the Einstein equation at leading
+        infrared order.
+        This establishes~\eqref{eq:first-law} as a compatibility condition rather than
+        a postulate.
+    \end{proof}
+
+    \begin{remark}[Nature of the identity]
+      \label{rem:identity-nature}
+      Equation~\eqref{eq:first-law} is not a definition of $\beta(x)$ from $\delta\Spi$
+      and $\delta E_\Pi$: both sides are independently defined.
+      $\beta(x)^{-1}$ is defined from the heat kernel via Definition~\ref{def:beta};
+      $\delta E_\Pi$ is defined from the matter action via~\eqref{eq:delta-E-Pi}.
+      The identity~\eqref{eq:first-law} is therefore a non-trivial constraint, not a
+      tautology.
+    \end{remark}
