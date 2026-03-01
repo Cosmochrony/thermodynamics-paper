@@ -42,7 +42,7 @@ The paper proceeds in three logical steps:
    physical temperature.
 
 2. **Local spectral first law (compatibility condition)**  
-   The projected matter energy ($E_\Pi$) is defined independently from the
+   The projected matter energy $E_\Pi$ is defined independently from the
    effective matter action.
    In the infrared regime, the metric variation of the renormalized spectral
    entropy satisfies
