@@ -20,13 +20,13 @@ We then show that:
 
 - a local spectral first law arises as a **compatibility condition** between
   the geometric and matter variations,
-- Einstein’s equation emerges as the **Euler–Lagrange condition** of a
+- Einstein’s equation emerges as the 
+  [Euler–Lagrange condition](https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation) of a
   constrained extremum of the spectral entropy,
-- the factor ($8\pi G$) follows uniquely from independent normalization
-  conventions.
+- the factor ($8\pi G$) follows uniquely from independent normalization conventions.
 
-The derivation requires **no horizon structure, no Rindler wedge, no
-Raychaudhuri equation**, and no thermodynamic postulate.
+The derivation requires **no horizon structure, no [Rindler wedge](https://en.wikipedia.org/wiki/Rindler_coordinates),
+no [Raychaudhuri equation](https://en.wikipedia.org/wiki/Raychaudhuri_equation)**, and no thermodynamic postulate.
 Einstein’s equation appears as a **spectral equilibrium condition** in the
 infrared-dominant regime.
 
@@ -42,16 +42,13 @@ The paper proceeds in three logical steps:
    physical temperature.
 
 2. **Local spectral first law (compatibility condition)**  
-   The projected matter energy $E_\Pi$ is defined independently from the
-   effective matter action.
-   In the infrared regime, the metric variation of the renormalized spectral
-   entropy satisfies
+   The projected matter energy $E_\Pi$ is defined independently from the effective matter action.
+   In the infrared regime, the metric variation of the renormalized spectral entropy satisfies
 
    $\delta S_\Pi = \int \beta(x)^{-1} \delta E_\Pi(x)$,
 
    not as a definition, but as a structural equivalence condition.
-   This identity holds if and only if the geometry satisfies Einstein’s equation
-   at leading order.
+   This identity holds if and only if the geometry satisfies Einstein’s equation at leading order.
 
 3. **Spectral equilibrium principle**  
    Admissible geometries extremize
@@ -59,7 +56,8 @@ The paper proceeds in three logical steps:
    $\mathcal{F}[g,\psi] = S_\Pi[g] - \beta_*^{-1} W_\Pi[g,\psi]$,
 
    where \(W_\Pi\) is the projected matter functional.
-   The Euler–Lagrange equation of this constrained extremum yields
+   The [Euler–Lagrange condition](https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation) of this constrained 
+   extremum yields
 
    $G_{\mu\nu} = 8\pi G_N T_{\mu\nu}$.
 
@@ -112,6 +110,7 @@ Einstein equation, spectral equilibrium, local temperature multiplier,
 variational principle
 
 ## Repository Contents
+
 ```
 paper/
 ├── pdf/ # Compiled paper PDF
