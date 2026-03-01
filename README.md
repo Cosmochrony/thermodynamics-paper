@@ -5,9 +5,7 @@ This repository contains the source of the
 This work develops a **local thermodynamic interpretation of spectral geometry**
 based on the projective entropy functional
 
-\[
-S_\Pi[g] = \tfrac12 \log \det{}' A_g .
-\]
+$S_\Pi[g] = \tfrac12 \log \det{}' A_g$.
 
 Starting from the diagonal heat kernel, we define a **local spectral energy
 density**
