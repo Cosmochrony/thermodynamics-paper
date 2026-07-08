@@ -677,6 +677,43 @@
       formula.
       A detailed comparison lies beyond the scope of the present paper.
 
+    \subsection{Quantum relative entropy derivations}
+      \label{subsec:relative-entropy}
+
+      Dorau and Much~\cite{DorauMuch2026} recently derived the semiclassical Einstein equations from
+      quantum information theory, replacing Jacobson's thermodynamic entropy by the Araki--Uhlmann
+      relative entropy between the vacuum and a coherent excitation of a scalar field on a bifurcate
+      Killing horizon.
+      Their chain ``relative entropy $\to$ energy flux $\to$ area variation $\to$ Einstein
+      equation'' is the quantum-field-theoretic counterpart of the tradition to which the present
+      derivation belongs.
+      The present framework is conceptually related but differs at the primitive level: the
+      fundamental quantity is not the relative entropy between two quantum states, but the projective
+      spectral entropy $\Spi[g] = \half\log\det' \Ag$ associated with the structurally non-injective
+      projection $\Pi$.
+      Gravity arises as the metric variation of this functional, and the derivation assumes neither
+      an underlying quantum field theory nor a horizon.
+
+      \begin{remark}[Relative form of the spectral entropy]
+        \label{rmk:relative-spi}
+        The correspondence with~\cite{DorauMuch2026} is made direct by a relative form of the
+        spectral entropy.
+        Taking the effective vacuum metric $g_0^{\mu\nu} = 2\eta^{\mu\nu}$, reconstructed in the
+        emergent geometry sub-programme as a \emph{derived} reference rather than a postulated one,
+        one defines
+        \[
+          \Spi(g \Vert g_0) = \half\log\frac{\det' A_g}{\det' A_{g_0}},
+        \]
+        finite by construction, whose reference term recovers the absolute functional
+        $\Spi[g] = \half\log\det' \Ag$: the relative form extends the fundamental one without
+        replacing it.
+        Here $g_0$ plays the role of the Dorau--Much vacuum and $g$ that of the excited state.
+        The associated monotonicity is carried, rigorously, by the underlying code-layer quantity:
+        the relative projection entropy of the observable measures $\nu$ obeys the data-processing
+        inequality under coarse-graining of $\Pi$, the classical analogue of the monotonicity of the
+        quantum relative entropy under channels.
+      \end{remark}
+
   \section{Discussion and outlook}
     \label{sec:discussion}
 
