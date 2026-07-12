@@ -1,5 +1,5 @@
 This repository contains the source of the  
-[paper on local spectral thermodynamics and gravitational equilibrium](pdf/Thermodynamics.pdf)  
+paper on local spectral thermodynamics and gravitational equilibrium  
 (paper I de Cosmochrony / paper 2 de gravity).
 
 This work develops a **local thermodynamic interpretation of spectral geometry**
@@ -53,9 +53,11 @@ The paper proceeds in three logical steps:
 3. **Spectral equilibrium principle**  
    Admissible geometries extremize
 
-   $\mathcal{F}[g,\psi] = S_\Pi[g] - \beta_*^{-1} W_\Pi[g,\psi]$,
+   $\mathcal{F}[g,\psi] = S_\Pi[g] - \vartheta_*^{-1} W_\Pi[g,\psi]$,
 
-   where \(W_\Pi\) is the projected matter functional.
+   where \(W_\Pi\) is the projected matter functional and $\vartheta_*^{-1}$ is the global
+   matter–geometry multiplier (kept notationally distinct from the local spectral field
+   $\beta(x)^{-1}$ and from the spectral-admissibility cascade exponent $\beta^*$).
    The [Euler–Lagrange condition](https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation) of this constrained 
    extremum yields
 
@@ -63,6 +65,12 @@ The paper proceeds in three logical steps:
 
    The numerical factor $8\pi G_N$ arises solely from the product of
    geometric and matter normalization conventions.
+
+   In the gauge sector, $\vartheta_*^{-1} = 1$ is identified conditionally as the
+   *single-determinant value* fixed by the relative $a_2/a_4$ normalization of the joint spectral
+   functional (Q13). The off-equilibrium term $\vartheta_*^{-1} \neq 1$ renormalizes the coupling to the
+   same matter content rather than defining an independent fluid, and the $a_2$ channel is classically
+   silent for traceless radiation.
 
 ## Core Claims
 

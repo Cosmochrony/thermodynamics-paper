@@ -414,21 +414,21 @@
         \begin{equation}
           \mathcal{F}[g,\psi]
           \equiv
-          \Spi[g] - \beta_*^{-1}\,W_\Pi[g,\psi]
+          \Spi[g] - \vartheta_*^{-1}\,W_\Pi[g,\psi]
           \label{eq:F-functional}
         \end{equation}
         under arbitrary compactly supported metric variations $\delta g^{\mu\nu}$,
-        with $\beta_*^{-1}$ a constant Lagrange multiplier.
+        with $\vartheta_*^{-1}$ a constant Lagrange multiplier.
       \end{definition}
 
       The functional $\mathcal{F}$ is the spectral analogue of a free energy: it extremizes
       entropic gain against the projected matter cost.
-      The Lagrange multiplier $\beta_*^{-1}$ enforces the constraint that the projected
+      The Lagrange multiplier $\vartheta_*^{-1}$ enforces the constraint that the projected
       matter content $W_\Pi$ is held fixed along admissible deformations.
 
-      \begin{remark}[Nature of $\beta_*^{-1}$]
+      \begin{remark}[Nature of $\vartheta_*^{-1}$]
         \label{rem:beta-star}
-        The global multiplier $\beta_*^{-1}$ in~\eqref{eq:F-functional} is distinct from
+        The global multiplier $\vartheta_*^{-1}$ in~\eqref{eq:F-functional} is distinct from
         the local field $\beta(x)^{-1}$ defined in Section~\ref{sec:spectral-locality}.
         The local field encodes spatial curvature variation; the global multiplier encodes
         the overall scale of the matter-geometry coupling.
@@ -453,13 +453,13 @@
         Varying $\mathcal{F}[g,\psi]$ with respect to $g^{\mu\nu}$:
         \begin{equation}
           \delta\mathcal{F}
-          = \delta\Spi - \beta_*^{-1}\,\delta W_\Pi = 0.
+          = \delta\Spi - \vartheta_*^{-1}\,\delta W_\Pi = 0.
           \label{eq:delta-F}
         \end{equation}
         Substituting~\eqref{eq:deltaS-EH} and~\eqref{eq:W-variation}:
         \begin{equation}
           \frac{1}{16\pi G_N}\int_M\sqrt{g}\;G_{\mu\nu}\,\delta g^{\mu\nu}
-          = \frac{\beta_*^{-1}}{2}\int_M\sqrt{g}\;T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}
+          = \frac{\vartheta_*^{-1}}{2}\int_M\sqrt{g}\;T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}
           + O(R\ell_\chi^2).
           \label{eq:EL-integrated}
         \end{equation}
@@ -467,11 +467,11 @@
         fundamental lemma of the calculus of variations gives pointwise:
         \begin{equation}
           \frac{1}{16\pi G_N}\,G_{\mu\nu}
-          = \frac{\beta_*^{-1}}{2}\,T^{(\Pi)}_{\mu\nu}
+          = \frac{\vartheta_*^{-1}}{2}\,T^{(\Pi)}_{\mu\nu}
           + O(R\ell_\chi^2).
           \label{eq:EL-pointwise}
         \end{equation}
-        For $\beta_*^{-1} = 1$ (see Section~\ref{sec:normalization}), this gives
+        For $\vartheta_*^{-1} = 1$ (see Section~\ref{sec:normalization}), this gives
         \begin{equation}
           G_{\mu\nu} = 8\pi G_N\,T^{(\Pi)}_{\mu\nu} + O(R\ell_\chi^2).
           \label{eq:einstein-proof}
@@ -524,7 +524,7 @@
 
     \begin{proposition}[Normalization identity]
       \label{prop:normalization}
-      The equilibrium condition $\delta\mathcal{F} = 0$ with $\beta_*^{-1} = 1$ gives
+      The equilibrium condition $\delta\mathcal{F} = 0$ with $\vartheta_*^{-1} = 1$ gives
       \begin{equation}
         \frac{1}{16\pi G_N}\,G_{\mu\nu}
         = \half\,T^{(\Pi)}_{\mu\nu},
@@ -547,29 +547,71 @@
       No other factor enters.
     \end{proposition}
 
-  \subsection{Status of $\beta_*^{-1} = 1$}
+  \subsection{Status of $\vartheta_*^{-1} = 1$}
     \label{subsec:beta-star-status}
 
-    Setting $\beta_*^{-1} = 1$ in the constrained functional~\eqref{eq:F-functional}
+    Setting $\vartheta_*^{-1} = 1$ in the constrained functional~\eqref{eq:F-functional}
     is not a dynamical assumption.
     It is a normalization choice equivalent to measuring energy in units where the
     spectral entropy and the projected matter functional are coupled with unit strength.
-    Concretely, it amounts to absorbing $\beta_*^{-1}$ into the definition of
+    Concretely, it amounts to absorbing $\vartheta_*^{-1}$ into the definition of
     $T^{(\Pi)}_{\mu\nu}$ as the effective stress tensor of the admissible projected
     sector, so that $W_\Pi$ is defined with the appropriate normalization.
 
-    Alternatively, one may retain $\beta_*^{-1}$ as a free parameter and interpret
-    $\beta_*^{-1} \neq 1$ as a departure from canonical spectral equilibrium.
+    Alternatively, one may retain $\vartheta_*^{-1}$ as a free parameter and interpret
+    $\vartheta_*^{-1} \neq 1$ as a departure from canonical spectral equilibrium.
     In that case,~\eqref{eq:EL-pointwise} generalizes to
-    $G_{\mu\nu} = 8\pi G_N\,\beta_*^{-1}\,T^{(\Pi)}_{\mu\nu}$,
+    $G_{\mu\nu} = 8\pi G_N\,\vartheta_*^{-1}\,T^{(\Pi)}_{\mu\nu}$,
     which describes an off-equilibrium spectral geometry with an effective renormalization
     of the matter coupling.
 
-  \subsection{Relation between $\beta_*^{-1}$ and the local field $\beta(x)^{-1}$}
+  \begin{remark}[Off-equilibrium departure as coupling renormalization, not a fluid]
+    \label{rmk:coupling-renormalization}
+    The off-equilibrium response can be written
+    \begin{equation}
+      G_{\mu\nu}
+      = 8\pi G_N\bigl[T^{(\Pi)}_{\mu\nu} + (\vartheta_*^{-1}-1)\,T^{(\Pi)}_{\mu\nu}\bigr],
+      \label{eq:coupling-renorm}
+    \end{equation}
+    so the departure from canonical equilibrium acts as a multiplicative renormalization of the coupling to
+    the same matter content, never as an independent second fluid.
+    A constant $\vartheta_*^{-1}$ is degenerate with the calibration of $G_N$ and is therefore
+    unobservable.
+    Any observable content of the off-equilibrium reading resides entirely in a possible slow dependence
+    $\vartheta_*^{-1}(\mathcal{I})$ on an ordering parameter $\mathcal{I}$ of the effective description ---
+    not a fundamental time --- which would require a dynamical closure external to the present equilibrium
+    functional, of the kind that arises in the cosmological branch~\cite{Beau2026d}.
+  \end{remark}
+
+  \begin{remark}[Single-determinant reading of $\vartheta_*^{-1}=1$ in the gauge sector]
+    \label{rmk:single-determinant}
+    In the spectrally closed gauge sector the canonical value $\vartheta_*^{-1}=1$ acquires a status stronger
+    than a normalization choice.
+    When the projected matter functional $W_\Pi$ is identified, with the appropriate normalization, with the
+    $a_4$ gauge sub-functional of the same spectral determinant, the relative weight of the geometric and
+    matter responses is fixed by that single determinant: the gauge--gravity synthesis~\cite{Beau2026q13}
+    derives $8\pi G_N = c_{\mathrm{YM}}/c_{\mathrm{EH}}$ from the $a_2$ and $a_4$ Seeley--DeWitt coefficients
+    of one $\log\det'\Ag$, with no independent multiplier, building on the vertical variation
+    of~\cite{Beau2026q12}.
+    In this identification $\vartheta_*^{-1}=1$ is the single-determinant value, and a departure
+    $\vartheta_*^{-1}\neq1$ is an external deformation of the determinant-fixed relative normalization rather than
+    a free Lagrange multiplier.
+    The promotion is conditional on the identification: for a generic or fermionic $W_\Pi$, not captured by
+    the $a_4$ level alone, $\vartheta_*^{-1}=1$ remains the normalization choice described above.
+    The reconciliation is one of conventions only: the stress tensor of~\cite{Beau2026q13} is defined
+    through $(1/\sqrt{g})\,\delta(\int\mathrm{Tr}\,\Omega_A^2)/\delta g^{\mu\nu}$, differing from
+    $T^{(\Pi)}_{\mu\nu} = (2/\sqrt{g})\,\delta W_\Pi/\delta g^{\mu\nu}$ by the factor two and by the sign
+    absorbed into that definition, with no physical divergence between the two conventions.
+    Because the identification splits the joint functional by heat-kernel order ($a_2$ geometric, $a_4$
+    gauge), the two sides remain independently computable and the non-tautology of the first law
+    (Remark~\ref{rem:identity-nature}) is preserved.
+  \end{remark}
+
+  \subsection{Relation between $\vartheta_*^{-1}$ and the local field $\beta(x)^{-1}$}
     \label{subsec:beta-relation}
 
     The local field $\beta(x)^{-1} = \beta_0^{-1} - \frac{1}{6}R(x)$
-    and the global Lagrange multiplier $\beta_*^{-1}$ play distinct roles.
+    and the global Lagrange multiplier $\vartheta_*^{-1}$ play distinct roles.
     The local field encodes spatially varying curvature corrections to the spectral
     multiplier; the global multiplier controls the overall strength of the
     entropy-matter coupling in the equilibrium functional.
@@ -577,7 +619,7 @@
     Their connection arises when the equilibrium condition is imposed locally rather
     than globally.
     Requiring $\delta\mathcal{F}$ to vanish not only for global metric variations but
-    also for local ones supported near a point $x$ replaces $\beta_*^{-1}$ by
+    also for local ones supported near a point $x$ replaces $\vartheta_*^{-1}$ by
     $\beta(x)^{-1}$ in~\eqref{eq:EL-pointwise}, yielding
     \begin{equation}
       G_{\mu\nu}(x)
@@ -714,6 +756,19 @@
         quantum relative entropy under channels.
       \end{remark}
 
+      \begin{remark}[Entropy nomenclature]
+        \label{rmk:entropy-nomenclature}
+        Three distinct entropies occur across the programme and are not identified here.
+        The present $\Spi[g] = \half\log\det'\Ag$ is the spectral-geometric entropy of the admissible
+        Laplacian.
+        It differs from the history-branching entropy $S_{\mathrm{hist}}$ of the cosmological
+        sector~\cite{Beau2026d} and from the measure-theoretic projection entropy of the emergence
+        criterion~\cite{Beau2026l}.
+        The only link asserted above is the structural one of Remark~\ref{rmk:relative-spi} --- the
+        data-processing monotonicity shared with the code-layer relative entropy --- and no identification
+        among the three is claimed.
+      \end{remark}
+
   \section{Discussion and outlook}
     \label{sec:discussion}
 
@@ -765,6 +820,20 @@
         identifying the admissible projected sector for each matter species.
         This is addressed in the Cosmochrony framework~\cite{Cosmochrony} but not derived
         here.
+
+      \begin{remark}[Spectral silence of the radiation era in the $a_2$ channel]
+        \label{rmk:radiation-silence}
+        The covariant part of the local multiplier field $\beta(x)^{-1} = \beta_0^{-1} - \tfrac16 R(x)$ is
+        governed by the on-shell trace $R = 8\pi G_N(\rho - 3p)$.
+        For conformal (radiation) matter $p = \rho/3$ this trace vanishes exactly, so $\beta(x)^{-1}$ sits at
+        its flat-space reference $\beta_0^{-1}$ throughout the radiation era: the geometric $a_2$ channel is
+        spectrally silent for a traceless source.
+        The first covariant departure appears only at matter domination, where $R = 8\pi G_N\,\rho_m > 0$;
+        the radiation--matter transition is thereby marked, not derived, by the corpus objects.
+        The statement is exact at the classical equation-of-state level; the quantum trace of the gauge
+        sector is the induced logarithmic anomaly carried by the $a_4$ coefficient~\cite{Beau2026q13}, an
+        infrared-small correction that is flagged rather than developed here.
+      \end{remark}
 
   \subsection{Outlook}
     \label{subsec:outlook}
