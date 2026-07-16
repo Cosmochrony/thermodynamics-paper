@@ -1,12 +1,12 @@
 # Einstein--Matter Coupling from Spectral Stationarity
 
 This repository contains the source of *Einstein--Matter Coupling from Spectral
-Stationarity: Established Result and the Open Thermodynamic Bridge*.
+Stationarity: A Conditional Variational Result and the Open Thermodynamic Bridge*.
 
-Version 2.0 separates a robust variational result from thermodynamic claims that were
-not established in version 1.1.
+Version 2.0 separates a conditional variational identity from thermodynamic claims that
+were not established in version 1.1.
 
-## Established result
+## Conditional variational result
 
 Let
 
@@ -17,8 +17,8 @@ S_\Pi^{\mathrm{ren}}[g]
 
 be the renormalized projective spectral functional, and let
 \(W_\Pi[g,\psi]\) be an independently defined effective matter functional.
-If the leading infrared metric response of \(S_\Pi^{\mathrm{ren}}\) is the Einstein
-tensor, stationarity of
+If the leading infrared metric response of \(S_\Pi^{\mathrm{ren}}\) contains specified
+renormalized Einstein and cosmological terms, stationarity of
 
 \[
 \Gamma_\Pi=S_\Pi^{\mathrm{ren}}-W_\Pi
@@ -27,7 +27,8 @@ tensor, stationarity of
 yields
 
 \[
-G_{\mu\nu}=8\pi G_N T^{(\Pi)}_{\mu\nu}
+G_{\mu\nu}+\Lambda_{\mathrm{ren}}g_{\mu\nu}
+=8\pi G_N T^{(\Pi)}_{\mu\nu}
 \]
 
 at leading local derivative order.
@@ -37,7 +38,9 @@ The coefficient is the ratio
 \frac{1/2}{(16\pi G_N)^{-1}}=8\pi G_N.
 \]
 
-This is a joint spectral--matter variational statement.
+This is a conditional joint geometric--matter variational statement.
+Its spectral input depends on a regulator and finite matching prescription that must be
+fixed in the companion Gravity paper.
 It is not, by itself, a thermodynamic equilibrium theorem.
 
 ## Local spectral response
@@ -81,9 +84,10 @@ operational temperature calibration, and an integrability theorem establishing
 
 - The diagonal heat kernel defines a local spectral rate and a dimensionless normalized
   curvature response.
-- Joint stationarity of the spectral and matter functionals yields the infrared
-  Einstein--matter equation under explicit hypotheses.
-- The factor \(8\pi G_N\) follows from a ratio of variation coefficients.
+- Joint stationarity of the geometric and matter functionals yields the infrared
+  Einstein--matter equation under explicit renormalization hypotheses.
+- Once the renormalized Einstein coefficient is supplied, the factor \(8\pi G_N\)
+  follows from a ratio of variation coefficients.
 - A thermodynamic interpretation remains open and is not used in the proof.
 
 ## Keywords
@@ -99,7 +103,7 @@ variational principle, thermodynamic integrability
 
 ## Citation
 
-> J. Beau, *Einstein--Matter Coupling from Spectral Stationarity: Established Result
+> J. Beau, *Einstein--Matter Coupling from Spectral Stationarity: A Conditional Variational Result
 > and the Open Thermodynamic Bridge*, 2026.
 
 ## Acknowledgements

@@ -1,6 +1,8 @@
 cff-version: 1.2.0
 message: "If you cite this work, please use the metadata from this file."
-title: "Einstein--Matter Coupling from Spectral Stationarity: Established Result and the Open Thermodynamic Bridge"
+title: >-
+  Einstein--Matter Coupling from Spectral Stationarity:
+  A Conditional Variational Result and the Open Thermodynamic Bridge
 type: article
 authors:
   - family-names: "Beau"
@@ -11,7 +13,9 @@ doi: "10.5281/zenodo.18825655"
 license: "CC-BY-4.0"
 preferred-citation:
   type: article
-  title: "Einstein--Matter Coupling from Spectral Stationarity: Established Result and the Open Thermodynamic Bridge"
+  title: >-
+    Einstein--Matter Coupling from Spectral Stationarity:
+    A Conditional Variational Result and the Open Thermodynamic Bridge
   authors:
     - family-names: "Beau"
       given-names: "Jérôme"

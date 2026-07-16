@@ -32,7 +32,7 @@
 \begin{document}
 
   \title{Einstein--Matter Coupling from Spectral Stationarity\\
-  \large Established Result and the Open Thermodynamic Bridge}
+  \large A Conditional Variational Result and the Open Thermodynamic Bridge}
 
   \author{J\'{e}r\^{o}me Beau\\
   \small Independent Researcher, France\\
@@ -41,11 +41,12 @@
   \maketitle
 
   \begin{abstract}
-    We separate a robust variational result from a thermodynamic interpretation that is not yet established.
+    We separate a conditional variational result from a thermodynamic interpretation that is not yet established.
     Let $\Spi^{\mathrm{ren}}[g]=\half\log\det'(\Ag/\mu^2)$ be the renormalized projective spectral functional.
-    Assuming its independently derived infrared metric response and an effective matter functional $W_\Pi[g,\psi]$,
+    Assuming a renormalized infrared metric response and an effective matter functional $W_\Pi[g,\psi]$,
     stationarity of $\Gamma_\Pi=\Spi^{\mathrm{ren}}-W_\Pi$ yields
-    $G_{\mu\nu}=8\pi G_N T^{(\Pi)}_{\mu\nu}$ at leading derivative order.
+    $G_{\mu\nu}+\Lambda_{\mathrm{ren}}g_{\mu\nu}=8\pi G_N T^{(\Pi)}_{\mu\nu}$
+    at leading derivative order.
     The coefficient follows directly from the ratio between the matter variation factor $1/2$ and the geometric
     coefficient $(16\pi G_N)^{-1}$.
 
@@ -61,7 +62,9 @@
     energy notion, and an integrability theorem establishing $\delta Q=T\,\dd S$.
 
     \textbf{Interpretive status.}
-    The established content is a spectral variational coupling between geometry and matter.
+    The conditional content is a variational coupling between a renormalized geometric functional and matter.
+    Its spectral derivation depends on a regulator and matching prescription that remain to be fixed in the companion
+    Gravity paper.
     Reading that stationarity as equilibrium remains a programme-level interpretation, not a result of this paper.
   \end{abstract}
 
@@ -81,17 +84,19 @@
     effective matter functional.
 
     The answer has two sharply different parts.
-    First, a standard joint variational problem produces the Einstein--matter equation with a fixed coefficient.
+    First, a standard joint variational problem conditionally produces the Einstein--matter equation from specified
+    renormalized coefficients.
     Second, the diagonal heat kernel supplies a useful local spectral scale, but it does not by itself supply heat,
     temperature, energy, or a first law.
     Keeping these statements separate is necessary for dimensional and variational consistency.
 
-    \subsection{Established result}
+    \subsection{Conditional variational result}
 
       Let $W_\Pi[g,\psi]$ be an effective matter functional whose metric variation defines
       $T^{(\Pi)}_{\mu\nu}$.
-      If the leading infrared variation of $\Spi^{\mathrm{ren}}$ is the Einstein response, stationarity of
-      $\Spi^{\mathrm{ren}}-W_\Pi$ gives the Einstein equation.
+      If the leading infrared variation of $\Spi^{\mathrm{ren}}$ contains specified Einstein and cosmological
+      responses, stationarity of $\Spi^{\mathrm{ren}}-W_\Pi$ gives the Einstein equation with a renormalized
+      cosmological constant.
       This statement is spectral and variational.
       It does not require a horizon, a heat flux, or a temperature.
 
@@ -112,7 +117,7 @@
         \item compactly supported metric variations turn a constant coupling into a local temperature field;
         \item the Einstein equation derived here is, by that derivation alone, an equilibrium equation of state.
       \end{enumerate}
-      The infrared joint-variation result is retained and restated with its actual hypotheses.
+      The joint-variation identity is retained and restated as conditional on its renormalized geometric input.
 
     \subsection{Structure of the paper}
 
@@ -266,13 +271,16 @@
 
     \subsection{Infrared geometric input}
 
-      The independent input from Gravity~\cite{Beau2026h} is that the renormalized spectral variation has the
-      leading local form
+      We state the renormalized geometric input as an explicit assumption.
+      Its derivation from a spectral regulator and its finite matching prescription are deferred to a corrected
+      treatment in Gravity~\cite{Beau2026h}.
+      The leading local form is
       \begin{equation}
         \delta\Spi^{\mathrm{ren}}
         =\int_M\dd^4x\,\sqrt{g}\,
         \left[
           \frac{1}{16\pi G_N}G_{\mu\nu}
+          +c_\Lambda g_{\mu\nu}
           +H_{\mu\nu}^{(4)}+H_{\mu\nu}^{\mathrm{nonloc}}
         \right]\delta g^{\mu\nu},
         \label{eq:deltaS-EH}
@@ -280,6 +288,8 @@
       where $H_{\mu\nu}^{(4)}$ contains local four-derivative terms and
       $H_{\mu\nu}^{\mathrm{nonloc}}$ contains finite non-local terms.
       In the weak-curvature infrared regime their contribution is subleading relative to the Einstein term.
+      Define the renormalized cosmological constant by
+      $\Lambda_{\mathrm{ren}}\equiv16\pi G_Nc_\Lambda$.
 
     \subsection{Stationarity theorem}
 
@@ -294,13 +304,14 @@
         \end{equation}
       \end{definition}
 
-      \begin{theorem}[Einstein--matter equation from joint stationarity]
+      \begin{theorem}[Conditional stationarity]
         \label{thm:einstein}
         Assume~\eqref{eq:W-variation} and~\eqref{eq:deltaS-EH}.
-        At leading local infrared order, stationarity of $\Gamma_\Pi$ under arbitrary compactly supported metric
-        variations is equivalent to
+        Work at leading local infrared order.
+        Then $\delta\Gamma_\Pi=0$ for every compactly supported metric variation if and only if
         \begin{equation}
-          G_{\mu\nu}=8\pi G_N T^{(\Pi)}_{\mu\nu}.
+          G_{\mu\nu}+\Lambda_{\mathrm{ren}}g_{\mu\nu}
+          =8\pi G_N T^{(\Pi)}_{\mu\nu}.
           \label{eq:einstein}
         \end{equation}
       \end{theorem}
@@ -312,6 +323,7 @@
           =\int_M\dd^4x\,\sqrt{g}\,
           \left[
             \frac{1}{16\pi G_N}G_{\mu\nu}
+            +c_\Lambda g_{\mu\nu}
             -\half T^{(\Pi)}_{\mu\nu}
           \right]\delta g^{\mu\nu}
           +\delta\Gamma_\Pi^{\mathrm{sub}}.
@@ -321,13 +333,15 @@
         the fundamental lemma of the calculus of variations yields
         \begin{equation}
           \frac{1}{16\pi G_N}G_{\mu\nu}
+          +c_\Lambda g_{\mu\nu}
           =\half T^{(\Pi)}_{\mu\nu}.
           \label{eq:EL-pointwise}
         \end{equation}
         Dividing by $(16\pi G_N)^{-1}$ gives~\eqref{eq:einstein}.
       \end{proof}
 
-      The theorem is a joint effective-action statement.
+      The theorem is a conditional joint effective-action statement.
+      Setting $c_\Lambda=0$ is an additional renormalization condition, not an infrared approximation.
       Calling its stationarity ``equilibrium'' would add an interpretation not used in the proof.
 
   \section{Normalization and coupling status}
@@ -354,7 +368,7 @@
       \begin{proposition}[Normalization identity]
         \label{prop:normalization}
         With the conventions~\eqref{eq:W-variation} and~\eqref{eq:deltaS-EH}, the stationarity equation has the
-        standard Einstein coefficient $8\pi G_N$.
+        standard matter coefficient $8\pi G_N$ once the renormalized geometric coefficient is supplied.
       \end{proposition}
 
     \subsection{Optional dimensionless relative coupling}
@@ -367,7 +381,8 @@
       \end{equation}
       Its leading stationarity equation is
       \begin{equation}
-        G_{\mu\nu}=8\pi G_N\kappa T^{(\Pi)}_{\mu\nu}.
+        G_{\mu\nu}+\Lambda_{\mathrm{ren}}g_{\mu\nu}
+        =8\pi G_N\kappa T^{(\Pi)}_{\mu\nu}.
         \label{eq:coupling-renorm}
       \end{equation}
       The constant $\kappa$ is a relative normalization or coupling.
@@ -531,15 +546,14 @@
   \section{Discussion and outlook}
     \label{sec:discussion}
 
-    \subsection{What is established}
+    \subsection{What follows conditionally}
       \label{subsec:summary}
 
-      The paper establishes three statements.
-      First, the local spectral rate has a controlled short-time curvature expansion and a dimensionless normalized
-      response $b=1-tR/12+\cdots$.
-      Second, joint stationarity of the renormalized spectral functional and an independently defined matter
-      functional yields the Einstein--matter equation at leading infrared order.
-      Third, the numerical coefficient $8\pi G_N$ is the ratio of the two variation coefficients.
+      The local spectral rate has a controlled short-time curvature expansion and a dimensionless normalized response
+      $b=1-tR/12+\cdots$.
+      Conditional on specified renormalized Einstein and cosmological coefficients, joint stationarity with an
+      independently defined matter functional yields the Einstein--matter equation at leading infrared order.
+      The numerical matter coefficient $8\pi G_N$ is then the ratio of the two variation coefficients.
 
     \subsection{What remains open}
       \label{subsec:limitations}
@@ -549,6 +563,9 @@
       A thermodynamic bridge requires a heat one-form, an operational temperature calibration, a statistical measure,
       and an integrability analysis.
       Higher-derivative and non-local responses must be retained outside the weak-curvature infrared regime.
+      The companion Gravity paper must also separate the proper-time-cutoff origin of an
+      $a_2\Lambda_{\mathrm{UV}}^2R$ term from the $a_4$ scale dependence of a zeta-regularized determinant and state
+      the matching condition that defines the finite renormalized value of $G_N$.
 
     \subsection{Interpretive outlook}
       \label{subsec:outlook}
@@ -556,8 +573,9 @@
       \textbf{Interpretation, not derived result.}
       Spectral stationarity may eventually be understood as an equilibrium principle if the missing thermodynamic
       structures are constructed and shown to select the same stationary geometries.
-      At present the defensible reading is narrower: the admissible spectral operator supplies a geometric functional,
-      and coupling that functional to projected matter reproduces the infrared Einstein response.
+      At present the defensible reading is narrower: if the admissible spectral operator and its renormalization
+      prescription supply the assumed geometric coefficients, coupling that functional to projected matter
+      reproduces the infrared Einstein response.
       This identifies where a thermodynamic interpretation could attach without treating analogy as derivation.
 
   \bibliographystyle{plain}
