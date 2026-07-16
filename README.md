@@ -97,7 +97,6 @@ variational principle, thermodynamic integrability
 
 ## Links
 
-- [Paper PDF](https://github.com/Cosmochrony/thermodynamics-paper/blob/main/out/Thermodynamics.pdf)
 - [Programme website](https://cosmochrony.org/science/spectral-gravity/thermodynamics/)
 - [Zenodo concept DOI](https://doi.org/10.5281/zenodo.18825655)
 
