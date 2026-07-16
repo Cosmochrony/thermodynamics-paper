@@ -1,17 +1,17 @@
 cff-version: 1.2.0
 message: "If you cite this work, please use the metadata from this file."
-title: "Local Spectral Thermodynamics and the Einstein Equation as a Spectral Equilibrium Condition"
-type: software
+title: "Einstein--Matter Coupling from Spectral Stationarity: Established Result and the Open Thermodynamic Bridge"
+type: article
 authors:
   - family-names: "Beau"
     given-names: "Jérôme"
-repository-code: "https://github.com/Cosmochrony/thermodynamics"
+repository-code: "https://github.com/Cosmochrony/thermodynamics-paper"
 url: "https://cosmochrony.org/science/spectral-gravity/thermodynamics/"
 doi: "10.5281/zenodo.18825655"
 license: "CC-BY-4.0"
 preferred-citation:
   type: article
-  title: "Local Spectral Thermodynamics and the Einstein Equation as a Spectral Equilibrium Condition"
+  title: "Einstein--Matter Coupling from Spectral Stationarity: Established Result and the Open Thermodynamic Bridge"
   authors:
     - family-names: "Beau"
       given-names: "Jérôme"

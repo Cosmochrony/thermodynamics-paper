@@ -1,155 +1,109 @@
-This repository contains the source of the  
-paper on local spectral thermodynamics and gravitational equilibrium  
-(paper I de Cosmochrony / paper 2 de gravity).
+# Einstein--Matter Coupling from Spectral Stationarity
 
-This work develops a **local thermodynamic interpretation of spectral geometry**
-based on the projective entropy functional
+This repository contains the source of *Einstein--Matter Coupling from Spectral
+Stationarity: Established Result and the Open Thermodynamic Bridge*.
 
-$S_\Pi[g] = \tfrac12 \log \det{}' A_g$.
+Version 2.0 separates a robust variational result from thermodynamic claims that were
+not established in version 1.1.
 
-Starting from the diagonal heat kernel, we define a **local spectral energy
-density**
+## Established result
 
-$u(x;t) = -\partial_t \log K(x,x;t)$,
+Let
 
-whose Seeley–DeWitt expansion yields a **local multiplier field**
+\[
+S_\Pi^{\mathrm{ren}}[g]
+= \frac12\log\det'\!\left(A_g/\mu^2\right)
+\]
 
-$\beta(x)^{-1} = \beta_0^{-1} - \tfrac16 R(x) + O(\nabla^2 R)$.
+be the renormalized projective spectral functional, and let
+\(W_\Pi[g,\psi]\) be an independently defined effective matter functional.
+If the leading infrared metric response of \(S_\Pi^{\mathrm{ren}}\) is the Einstein
+tensor, stationarity of
 
-We then show that:
+\[
+\Gamma_\Pi=S_\Pi^{\mathrm{ren}}-W_\Pi
+\]
 
-- a local spectral first law arises as a **compatibility condition** between
-  the geometric and matter variations,
-- Einstein’s equation emerges as the 
-  [Euler–Lagrange condition](https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation) of a
-  constrained extremum of the spectral entropy,
-- the factor ($8\pi G$) follows uniquely from independent normalization conventions.
+yields
 
-The derivation requires **no horizon structure, no [Rindler wedge](https://en.wikipedia.org/wiki/Rindler_coordinates),
-no [Raychaudhuri equation](https://en.wikipedia.org/wiki/Raychaudhuri_equation)**, and no thermodynamic postulate.
-Einstein’s equation appears as a **spectral equilibrium condition** in the
-infrared-dominant regime.
+\[
+G_{\mu\nu}=8\pi G_N T^{(\Pi)}_{\mu\nu}
+\]
 
-## Conceptual Overview
+at leading local derivative order.
+The coefficient is the ratio
 
-The paper proceeds in three logical steps:
+\[
+\frac{1/2}{(16\pi G_N)^{-1}}=8\pi G_N.
+\]
 
-1. **Spectral locality**  
-   The diagonal heat kernel defines a local spectral energy density whose
-   short-time expansion produces a curvature-dependent multiplier field.
-   The universal part $\beta_0^{-1} = 2/t_*$ depends on the spectral
-   admissibility scale $t_*$, which is a resolution parameter rather than a
-   physical temperature.
+This is a joint spectral--matter variational statement.
+It is not, by itself, a thermodynamic equilibrium theorem.
 
-2. **Local spectral first law (compatibility condition)**  
-   The projected matter energy $E_\Pi$ is defined independently from the effective matter action.
-   In the infrared regime, the metric variation of the renormalized spectral entropy satisfies
+## Local spectral response
 
-   $\delta S_\Pi = \int \beta(x)^{-1} \delta E_\Pi(x)$,
+For the minimal scalar Laplacian in four dimensions,
 
-   not as a definition, but as a structural equivalence condition.
-   This identity holds if and only if the geometry satisfies Einstein’s equation at leading order.
+\[
+u(x;t)=-\partial_t\log K(x,x;t)
+=\frac2t-\frac16R(x)+O(t\mathcal R^2,t\nabla^2R).
+\]
 
-3. **Spectral equilibrium principle**  
-   Admissible geometries extremize
+Because \([t]=L^2\), the spectral rate has dimension \([u]=L^{-2}\).
+Its normalized form is
 
-   $\mathcal{F}[g,\psi] = S_\Pi[g] - \vartheta_*^{-1} W_\Pi[g,\psi]$,
+\[
+b(x;t)=\frac{tu(x;t)}2
+=1-\frac{tR(x)}{12}+O(t^2\mathcal R^2,t^2\nabla^2R).
+\]
 
-   where \(W_\Pi\) is the projected matter functional and $\vartheta_*^{-1}$ is the global
-   matter–geometry multiplier (kept notationally distinct from the local spectral field
-   $\beta(x)^{-1}$ and from the spectral-admissibility cascade exponent $\beta^*$).
-   The [Euler–Lagrange condition](https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation) of this constrained 
-   extremum yields
+The quantity \(b\) is a dimensionless curvature response.
+Neither \(u\) nor \(b\) is identified with a physical temperature, inverse
+temperature, or energy density.
 
-   $G_{\mu\nu} = 8\pi G_N T_{\mu\nu}$.
+## Status correction relative to version 1.1
 
-   The numerical factor $8\pi G_N$ arises solely from the product of
-   geometric and matter normalization conventions.
+Version 2.0 withdraws the following claims of version 1.1:
 
-   In the gauge sector, $\vartheta_*^{-1} = 1$ is identified conditionally as the
-   *single-determinant value* fixed by the relative $a_2/a_4$ normalization of the joint spectral
-   functional (Q13). The off-equilibrium term $\vartheta_*^{-1} \neq 1$ renormalizes the coupling to the
-   same matter content rather than defining an independent fluid, and the $a_2$ channel is classically
-   silent for traceless radiation.
+1. that \(-\partial_t\log K\) is a local energy density or temperature;
+2. that the diagonal heat kernel establishes a local first law;
+3. that local metric variations replace a constant coupling by a
+   curvature-dependent temperature field;
+4. that the variational Einstein equation is thereby proved to be an equilibrium
+   equation of state.
 
-## Core Claims
+The corrected paper explains the additional structures required for a thermodynamic
+completion: an independently defined heat one-form, a Lorentzian energy notion, an
+operational temperature calibration, and an integrability theorem establishing
+\(\delta Q=T\,\mathrm dS\).
 
-The paper establishes the following statements:
+## Core claims
 
-1. **The heat kernel defines a local spectral multiplier field**  
-   The Seeley–DeWitt coefficient $a_2 = \tfrac16 R\$ controls the leading
-   geometric correction to the local spectral temperature multiplier.
-
-2. **The local spectral first law is a compatibility identity**  
-   The relation $\delta S_\Pi = \int \beta^{-1} \delta E_\Pi$ is not a
-   thermodynamic postulate but a structural condition linking geometric and
-   matter variations.
-
-3. **Einstein’s equation is an extremum condition**  
-   The field equation arises from a constrained variational principle on the
-   spectral entropy functional.
-
-4. **The factor ($8\pi G$) is fixed by normalization alone**  
-   It results from combining the geometric normalization
-   $(16\pi G)^{-1}$ with the stress-tensor definition factor $1/2$.
-   No additional parameter is introduced.
-
-5. **No causal or horizon assumptions are required**  
-   The derivation is performed entirely on Riemannian manifolds.
-   Horizons and Unruh temperature enter only as formal analogies, not as
-   foundational ingredients.
-
-## What This Paper Does Not Assume
-
-To avoid conflating structural and thermodynamic claims, the paper does not assume:
-
-- the existence of local Rindler horizons,
-- the Clausius relation $\delta S = \delta Q/T$,
-- a microscopic thermodynamic interpretation,
-- local Lorentz invariance at the Planck scale,
-- any modification of classical general relativity.
-
-The analysis is entirely spectral and variational.
+- The diagonal heat kernel defines a local spectral rate and a dimensionless normalized
+  curvature response.
+- Joint stationarity of the spectral and matter functionals yields the infrared
+  Einstein--matter equation under explicit hypotheses.
+- The factor \(8\pi G_N\) follows from a ratio of variation coefficients.
+- A thermodynamic interpretation remains open and is not used in the proof.
 
 ## Keywords
 
-Spectral entropy, heat kernel, Seeley–DeWitt expansion, induced gravity,
-Einstein equation, spectral equilibrium, local temperature multiplier,
-variational principle
-
-## Repository Contents
-
-```
-paper/
-├── pdf/ # Compiled paper PDF
-├── tex/ # LaTeX sources
-└── README.md
-```
+Spectral determinant, heat kernel, induced gravity, Einstein equation, matter coupling,
+variational principle, thermodynamic integrability
 
 ## Links
 
-- 📄 [Paper PDF](https://github.com/Cosmochrony/thermodynamics-paper/blob/main/pdf/Thermodynamics.pdf)
-- 🌐 Website: [cosmochrony.org](https://cosmochrony.org)
+- [Paper PDF](https://github.com/Cosmochrony/thermodynamics-paper/blob/main/out/Thermodynamics.pdf)
+- [Programme website](https://cosmochrony.org/science/spectral-gravity/thermodynamics/)
+- [Zenodo concept DOI](https://doi.org/10.5281/zenodo.18825655)
 
 ## Citation
 
-If you reference this work, please cite:
-
-> J. Beau, *Local Spectral Thermodynamics and the Einstein Equation as a Spectral Equilibrium Condition*, 2026.
+> J. Beau, *Einstein--Matter Coupling from Spectral Stationarity: Established Result
+> and the Open Thermodynamic Bridge*, 2026.
 
 ## Acknowledgements
 
-Portions of the editorial refinement benefited from iterative interactions with
-large language models.
-These tools were used as analytical assistants for exploring alternative
-formulations, checking internal consistency, and improving clarity.
-All claims, interpretations, and final formulations remain the sole
-responsibility of the author.
-
-## Contributions
-
-This repository is intended as a research reference.
-
-Critical feedback, independent analyses, and formal scrutiny are welcome.
-Please open an issue to discuss conceptual points, normalization choices,
-possible counterexamples, or alternative formulations.
+Portions of the development benefited from iterative interactions with large language
+models used as analytical assistants.
+All claims, interpretations, and final formulations remain the author's responsibility.

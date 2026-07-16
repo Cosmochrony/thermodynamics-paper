@@ -1,17 +1,19 @@
 \documentclass[12pt,a4paper]{article}
 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\input{glyphtounicode}
+\pdfgentounicode=1
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
 \usepackage{geometry}
 \usepackage{doi}
 \geometry{margin=2.5cm}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
+\hypersetup{colorlinks=false,pdfborder={0 0 0}}
 \usepackage{enumitem}
 
-% -------------------------------------------------------------------
-% Theorem environments
-% -------------------------------------------------------------------
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -20,20 +22,17 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 
-% -------------------------------------------------------------------
-% Macros
-% -------------------------------------------------------------------
 \newcommand{\Spi}{S_{\Pi}}
 \newcommand{\Ag}{A_g}
 \newcommand{\hk}{K}
 \newcommand{\tr}{\operatorname{Tr}}
-\newcommand{\vol}{\operatorname{vol}}
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\half}{\tfrac{1}{2}}
 
 \begin{document}
 
-  \title{Local Spectral Thermodynamics and the Einstein Equation as a Spectral Equilibrium Condition}
+  \title{Einstein--Matter Coupling from Spectral Stationarity\\
+  \large Established Result and the Open Thermodynamic Bridge}
 
   \author{J\'{e}r\^{o}me Beau\\
   \small Independent Researcher, France\\
@@ -42,35 +41,32 @@
   \maketitle
 
   \begin{abstract}
-    We develop a local thermodynamic interpretation of the projective spectral entropy
-    functional $\Spi[g] = \frac{1}{2}\log\det' A_g$, extending the covariant framework
-    established in a companion paper.
-    The diagonal heat kernel $K(x,x;t)$ defines a local spectral energy density
-    $u(x;t) = -\partial_t \log K(x,x;t)$, whose Seeley--DeWitt expansion yields
-    a local spectral multiplier field $\beta(x)^{-1} = \beta_0^{-1} - \frac{1}{6}R(x) + O(\nabla^2 R)$.
-    Here $\beta_0^{-1} = 2/t_*$ is a universal UV contribution fixed by the spectral
-    admissibility scale $t_*$, while the curvature correction is geometric and covariant.
+    We separate a robust variational result from a thermodynamic interpretation that is not yet established.
+    Let $\Spi^{\mathrm{ren}}[g]=\half\log\det'(\Ag/\mu^2)$ be the renormalized projective spectral functional.
+    Assuming its independently derived infrared metric response and an effective matter functional $W_\Pi[g,\psi]$,
+    stationarity of $\Gamma_\Pi=\Spi^{\mathrm{ren}}-W_\Pi$ yields
+    $G_{\mu\nu}=8\pi G_N T^{(\Pi)}_{\mu\nu}$ at leading derivative order.
+    The coefficient follows directly from the ratio between the matter variation factor $1/2$ and the geometric
+    coefficient $(16\pi G_N)^{-1}$.
 
-    We then formulate a local spectral first law as a compatibility theorem:
-    in the infrared-dominant regime, the metric variation of $\Spi$ and the metric
-    variation of the projected matter functional are related through the local multiplier
-    field, yielding a constraint $\delta\Spi = \int \beta(x)^{-1}\,\delta E_\Pi(x)$.
-    This is not a definition but a structural consequence of the Seeley--DeWitt
-    hierarchy and the induced-gravity normalization established in the companion paper.
+    We then audit the diagonal heat-kernel quantity
+    $u(x;t)=-\partial_t\log K(x,x;t)$.
+    For a four-dimensional minimal scalar Laplacian it has dimension $L^{-2}$ and expansion
+    $u=2/t-R/6+O(t\mathcal{R}^2,t\nabla^2R)$.
+    Its normalized form $b(x;t)=tu(x;t)/2=1-tR/12+\cdots$ is a dimensionless spectral response.
+    Neither quantity is a physical temperature, an inverse temperature, or an energy density without an additional
+    calibration map.
+    Consequently no local first law follows from the heat kernel alone.
+    A thermodynamic completion requires an independently defined heat one-form on configuration space, a physical
+    energy notion, and an integrability theorem establishing $\delta Q=T\,\dd S$.
 
-    We then impose a spectral equilibrium principle: admissible geometries extremize
-    $\Spi$ at fixed projected matter content.
-    The resulting Euler--Lagrange equation is Einstein's field equation
-    $G_{\mu\nu} = 8\pi G\, T_{\mu\nu}$, with the factor $8\pi G$ arising purely from
-    the normalization conventions of the geometric and matter sides.
-    The derivation requires no horizon structure, no Rindler wedge, no Raychaudhuri
-    theorem, and no assumption of local Lorentz invariance at the Planck scale.
-    Einstein's equation emerges as a spectral extremum condition within the
-    effective infrared geometry.
+    \textbf{Interpretive status.}
+    The established content is a spectral variational coupling between geometry and matter.
+    Reading that stationarity as equilibrium remains a programme-level interpretation, not a result of this paper.
   \end{abstract}
 
-  \noindent\textbf{Keywords:} spectral entropy, heat kernel, local temperature,
-  induced gravity, Einstein equation, spectral equilibrium, Seeley--DeWitt
+  \noindent\textbf{Keywords:} spectral determinant, heat kernel, induced gravity,
+  Einstein equation, matter coupling, variational principle, thermodynamic integrability
 
   \clearpage
   \tableofcontents
@@ -79,774 +75,490 @@
   \section{Introduction}
     \label{sec:intro}
 
-    In a companion paper~\cite{Beau2026h}, we established that the projective spectral
-    entropy functional
-    \begin{equation}
-      \Spi[g] \equiv \half\log\det' \Ag ,
-      \label{eq:Spi-def}
-    \end{equation}
-    defined by a minimal Laplace-type operator $\Ag = -\nabla_g^2$ on a four-dimensional
-    Riemannian manifold $(M,g)$, admits a well-defined renormalized metric variation.
-    In the infrared-dominant regime where all dimensionless curvature invariants satisfy
-    $R\ell_\chi^2 \ll 1$, the renormalized spectral stress tensor decomposes as
-    \begin{equation}
-      \frac{\delta\Spi^{\mathrm ren}}{\delta g^{\mu\nu}}
-      = c_{\mathrm EH}({\mu})\,G_{\mu\nu} + c_\Lambda(\mu)\,g_{\mu\nu}
-      + \beta_{\mathrm loc}\,B_{\mu\nu} + T^{\mathrm non\text{-}loc}_{\mu\nu} + A_{\mu\nu},
-      \label{eq:decomp-paper1}
-    \end{equation}
-    with $c_{\mathrm EH} = (16\pi G_N)^{-1}$ identified via induced-gravity renormalization;
-    higher-derivative terms are suppressed by powers of $\ell_\chi^2$.
+    The companion Gravity paper~\cite{Beau2026h} studies the renormalized metric response of the projective
+    spectral functional and identifies its leading infrared local term with the Einstein tensor.
+    The present paper asks what follows when that geometric functional is coupled to an independently defined
+    effective matter functional.
 
-    The goal of the present paper is to develop the local thermodynamic interpretation
-    of this structure.
-    We show that the diagonal heat kernel $\hk(x,x;t)$ defines a natural local spectral
-    energy density $u(x;t)$, whose curvature expansion produces a local multiplier field
-    $\beta(x)^{-1}$ with a universal part and a geometric correction proportional to
-    the scalar curvature $R(x)$.
-    This field plays the role of a local inverse temperature, defined purely from spectral
-    data, without thermodynamic input.
+    The answer has two sharply different parts.
+    First, a standard joint variational problem produces the Einstein--matter equation with a fixed coefficient.
+    Second, the diagonal heat kernel supplies a useful local spectral scale, but it does not by itself supply heat,
+    temperature, energy, or a first law.
+    Keeping these statements separate is necessary for dimensional and variational consistency.
 
-    We then show that the compatibility between the geometric and matter sides of the
-    metric variation is precisely the condition
-    \begin{equation}
-      \delta\Spi = \int_\Sigma \beta(x)^{-1}\,\delta E_\Pi(x)\,\dd^3 x ,
-      \label{eq:first-law-intro}
-    \end{equation}
-    which we call the \emph{local spectral first law}.
-    This is not a postulate but a structural consequence of the Seeley--DeWitt
-    hierarchy.
+    \subsection{Established result}
 
-    Finally, we impose a spectral equilibrium principle: admissible geometries are
-    those for which $\Spi$ is stationary at fixed projected matter content.
-    The Euler--Lagrange equation of this constrained extremum is Einstein's field
-    equation, obtained without any reference to local horizons, Rindler observers,
-    or causal structure.
+      Let $W_\Pi[g,\psi]$ be an effective matter functional whose metric variation defines
+      $T^{(\Pi)}_{\mu\nu}$.
+      If the leading infrared variation of $\Spi^{\mathrm{ren}}$ is the Einstein response, stationarity of
+      $\Spi^{\mathrm{ren}}-W_\Pi$ gives the Einstein equation.
+      This statement is spectral and variational.
+      It does not require a horizon, a heat flux, or a temperature.
 
-    \medskip
-    \noindent\textbf{Relation to Jacobson's derivation.}
-    Jacobson~\cite{Jacobson1995} derived Einstein's equation by imposing the Clausius
-    relation $\delta S = \delta Q/T$ on all local Rindler horizons, using the
-    Bekenstein--Hawking entropy proportional to area.
-    The present derivation is structurally parallel but differs in three essential ways:
-    (i) the entropy functional is $\Spi$, not an area functional;
-    (ii) the temperature field $\beta(x)^{-1}$ is defined from spectral data, not from
-    Rindler kinematics;
-    (iii) the field equation arises from a variational extremum, not from a horizon
-    equilibrium condition.
-    The relation to Jacobson's derivation is discussed further in
-    Section~\ref{sec:relation-jacobson}.
+    \subsection{Status correction relative to version 1.1}
+      \label{subsec:status-correction}
 
-    \medskip
-    \noindent\textbf{Structure of the paper.}
-    Section~\ref{sec:spectral-locality} develops the local spectral energy density and
-    the multiplier field $\beta(x)$.
-    Section~\ref{sec:first-law} establishes the local spectral first law as a
-    compatibility theorem.
-    Section~\ref{sec:equilibrium} formulates the spectral equilibrium principle and
-    derives the Einstein equation.
-    Section~\ref{sec:normalization} verifies the normalization of the factor $8\pi G$.
-    Section~\ref{sec:relation-jacobson} discusses the relation to previous thermodynamic
-    derivations.
-    Section~\ref{sec:discussion} collects limitations and outlook.
+      Version 1.1 used the terms ``local spectral energy density'', ``temperature multiplier'', ``local spectral
+      first law'', and ``spectral equilibrium'' for structures that had not been connected to operational
+      thermodynamic quantities.
+      It also assigned mutually incompatible dimensions to the same multiplier, treated a total energy variation as
+      a local density, and replaced a constant variational coupling by a curvature-dependent field without varying
+      that field.
 
-  \section{Spectral locality and the temperature multiplier field}
+      Version 2.0 withdraws the following claims of version 1.1:
+      \begin{enumerate}[label=\textup{(\roman*)}]
+        \item $-\partial_t\log K(x,x;t)$ is a local energy density or temperature;
+        \item the heat kernel establishes a local first law;
+        \item compactly supported metric variations turn a constant coupling into a local temperature field;
+        \item the Einstein equation derived here is, by that derivation alone, an equilibrium equation of state.
+      \end{enumerate}
+      The infrared joint-variation result is retained and restated with its actual hypotheses.
+
+    \subsection{Structure of the paper}
+
+      Section~\ref{sec:spectral-locality} defines the dimensionally consistent local spectral response.
+      Section~\ref{sec:equilibrium} proves the joint variational result.
+      Section~\ref{sec:normalization} isolates the normalization and the role of a possible dimensionless coupling.
+      Section~\ref{sec:first-law} states what a genuine thermodynamic completion would require.
+      Section~\ref{sec:relation-jacobson} compares neighbouring approaches.
+      Section~\ref{sec:discussion} gives limitations and an interpretive outlook.
+
+  \section{Spectral determinant and local spectral response}
     \label{sec:spectral-locality}
 
-    \subsection{Local spectral energy density}
-      \label{subsec:local-density}
+    \subsection{Dimensionless renormalized spectral functional}
 
-      Let $\Ag$ be a positive Laplace-type operator on $(M,g)$.
-      Denote by $\hk(x,y;t)$ its heat kernel, satisfying
+      Let $(M,g)$ be a smooth four-dimensional Riemannian manifold and let
+      $\Ag=-\nabla_g^2$ be a positive minimal scalar Laplacian.
+      Since $[\Ag]=L^{-2}$, a determinant requires a reference scale $\mu$.
+      We use the renormalized dimensionless functional
       \begin{equation}
-        (\partial_t + \Ag)\hk(x,y;t) = 0,
+        \Spi^{\mathrm{ren}}[g]
+        \equiv
+        \half\log\det'\!\left(\frac{\Ag}{\mu^2}\right).
+        \label{eq:Spi-def}
+      \end{equation}
+      The prime excludes zero modes.
+      The name ``spectral entropy'' is retained as corpus terminology, but no thermodynamic entropy is inferred from
+      the determinant in this paper.
+
+    \subsection{Heat-kernel expansion}
+
+      The heat kernel satisfies
+      \begin{equation}
+        (\partial_t+\Ag)\hk(x,y;t)=0,
         \qquad
-        \hk(x,y;0^+) = \delta_g(x,y).
+        \hk(x,y;0^+)=\delta_g(x,y),
         \label{eq:heat-eq}
       \end{equation}
-      The diagonal $u_0(x;t) \equiv \hk(x,x;t)$ is a local scalar density encoding
-      the spectral weight at point $x$ and diffusion scale $t$.
+      with $[t]=L^2$ and $[\hk(x,x;t)]=L^{-4}$.
+      In the convention where the universal factor is outside the coefficient series,
+      \begin{equation}
+        \hk(x,x;t)
+        \sim
+        \frac{1}{(4\pi t)^2}
+        \left(a_0(x)+a_2(x)t+a_4(x)t^2+\cdots\right),
+        \qquad t\to0^+.
+        \label{eq:hk-expansion}
+      \end{equation}
+      For the minimal scalar Laplacian,
+      \begin{align}
+        a_0(x)&=1,
+        \label{eq:a0}\\
+        a_2(x)&=\frac{1}{6}R(x),
+        \label{eq:a2}\\
+        a_4(x)&=\frac{1}{360}
+        \left(
+          12\nabla^2R+5R^2-2R_{\mu\nu}R^{\mu\nu}
+          +2R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}
+        \right).
+        \label{eq:a4}
+      \end{align}
+      This convention must not include a second factor $(4\pi)^{-2}$ inside $a_4$~\cite{Vassilevich2003,
+      Gilkey1995}.
 
-      \begin{definition}[Local spectral energy density]
+    \subsection{Local spectral response}
+
+      \begin{definition}[Local spectral rate]
         \label{def:u}
-        The \emph{local spectral energy density} at point $x$ and scale $t$ is
+        The local spectral rate at diffusion scale $t$ is
         \begin{equation}
-          u(x;t) \equiv -\partial_t \log \hk(x,x;t).
+          u(x;t)\equiv-\partial_t\log\hk(x,x;t).
           \label{eq:u-def}
         \end{equation}
       \end{definition}
 
-      This definition is minimal: it depends only on local diagonal heat-kernel data.
-      The sign convention ensures $u(x;t) > 0$ in the short-time regime, consistent with
-      an energy interpretation.
-      The expression is also the natural local analogue of the canonical relation
-      $E = -\partial_\beta \log Z$ in statistical mechanics, once $t$ is identified with
-      an inverse spectral resolution parameter.
+      The logarithm may be understood relative to a fixed reference kernel.
+      Such a reference changes the logarithm by a $t$-independent term and therefore does not change $u$.
 
-    \subsection{Seeley--DeWitt expansion of \texorpdfstring{$u(x;t)$}{u(x;t)}}
-      \label{subsec:SDW-expansion}
-
-      For the minimal scalar Laplacian $\Ag = -\nabla_g^2$ in dimension $d=4$, the
-      short-time expansion of the diagonal heat kernel reads~\cite{Vassilevich2003,
-    Gilkey1995}
-      \begin{equation}
-        \hk(x,x;t) \sim \frac{1}{(4\pi t)^2}
-        \bigl(a_0(x) + a_2(x)\,t + a_4(x)\,t^2 + \cdots\bigr)
-        \quad\text{as }t\to 0^+,
-        \label{eq:hk-expansion}
-      \end{equation}
-      with Seeley--DeWitt coefficients
-      \begin{align}
-        a_0(x) &= 1, \label{eq:a0}\\
-        a_2(x) &= \tfrac{1}{6}R(x), \label{eq:a2}\\
-        a_4(x) &= \frac{1}{(4\pi)^2\cdot 360}
-        \bigl(R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}
-        - R_{\mu\nu}R^{\mu\nu} + \tfrac{5}{3}R^2\bigr). \label{eq:a4}
-      \end{align}
-
-      Taking the logarithm of~\eqref{eq:hk-expansion} and differentiating with respect
-      to $t$ yields:
-      \begin{equation}
-        \partial_t \log \hk(x,x;t)
-        = -\frac{2}{t}
-        + \partial_t \log\bigl(a_0 + a_2\,t + a_4\,t^2 + \cdots\bigr).
-        \label{eq:dlog-hk}
-      \end{equation}
-      For the minimal Laplacian, $a_0 = 1$ and $a_2 = \frac{1}{6}R$, so
-      \begin{equation}
-        \partial_t \log\bigl(1 + \tfrac{1}{6}R\,t + O(t^2)\bigr)
-        = \tfrac{1}{6}R + O(t).
-        \label{eq:log-expand}
-      \end{equation}
-      Therefore, by Definition~\ref{def:u}:
-
-      \begin{proposition}[Curvature expansion of $u$]
+      \begin{proposition}[Short-time spectral rate]
         \label{prop:u-expansion}
-        For the minimal scalar Laplacian in dimension four,
+        The local spectral rate has the expansion
         \begin{equation}
-          u(x;t) = \frac{2}{t} - \frac{1}{6}R(x) + O(t).
+          u(x;t)
+          =\frac{2}{t}-\frac{1}{6}R(x)
+          +O\!\left(t\mathcal{R}^2,t\nabla^2R\right),
           \label{eq:u-expansion}
         \end{equation}
-        The leading term is universal and UV-divergent; the first geometric correction is
-        proportional to the scalar curvature with coefficient fixed by $a_2$.
+        where $\mathcal{R}^2$ denotes quadratic curvature invariants.
       \end{proposition}
 
-    \subsection{The local multiplier field \texorpdfstring{$\beta(x)$}{beta(x)}}
-      \label{subsec:beta-field}
+      \begin{proof}
+        Taking the logarithm of~\eqref{eq:hk-expansion} gives
+        \[
+          \log\hk=-2\log(4\pi t)+\frac{1}{6}Rt
+          +O\!\left(t^2\mathcal{R}^2,t^2\nabla^2R\right).
+        \]
+        Differentiation and multiplication by $-1$ give~\eqref{eq:u-expansion}.
+      \end{proof}
 
-      We now evaluate $u(x;t)$ at a fixed spectral scale $t = t_*$, defined as the
-      admissibility scale introduced in~\cite{Beau2026h,Beau2026a} as the infrared
-      threshold below which the spectral description is consistent.
+      Since $[u]=L^{-2}$, $u$ has the dimension of a Laplace eigenvalue.
+      It has neither the dimension of energy nor that of temperature in natural units.
 
-      \begin{definition}[Local spectral multiplier field]
+    \subsection{Dimensionless curvature response}
+
+      \begin{definition}[Normalized local response]
         \label{def:beta}
-        The \emph{local spectral multiplier field} $\beta(x)^{-1}$ is defined by
+        Relative to the flat short-time value $u_0(t)=2/t$, define
         \begin{equation}
-          \beta(x)^{-1} \equiv u(x;t_*) = \frac{2}{t_*} - \frac{1}{6}R(x) + O(t_*).
+          b(x;t)
+          \equiv
+          \frac{u(x;t)}{u_0(t)}
+          =1-\frac{t}{12}R(x)
+          +O\!\left(t^2\mathcal{R}^2,t^2\nabla^2R\right).
           \label{eq:beta-def}
         \end{equation}
       \end{definition}
 
-      \begin{remark}[Sign convention and decomposition]
+      The field $b$ is dimensionless and covariantly defined once the diffusion scale is specified.
+      It measures the leading curvature correction to the local spectral rate.
+      It is not a temperature or inverse temperature.
+
+      \begin{remark}[Sign of the correction]
         \label{rem:sign}
-        Equation~\eqref{eq:beta-def} may appear to give a \emph{negative} curvature correction,
-        whereas the literature on local temperature often writes a \emph{positive} geometric
-        correction.
-        The sign is consistent and arises from the definition $u = -\partial_t \log K$
-        together with the expansion $\log K \sim -2\log t + \frac{1}{6}Rt + \cdots$,
-        which gives $\partial_t \log K \sim -2/t + \frac{1}{6}R$,
-        and hence $u \sim 2/t - \frac{1}{6}R$.
-
-        When we write the decomposition with $\beta_0^{-1} \equiv 2/t_*$, we have
-        \begin{equation}
-          \beta(x)^{-1} = \beta_0^{-1} - \frac{1}{6}R(x) + O(t_*).
-          \label{eq:beta-decomp}
-        \end{equation}
-        On a positively curved manifold ($R > 0$), the local multiplier is \emph{smaller}
-        than the flat reference $\beta_0^{-1}$: curvature reduces the effective spectral
-        temperature relative to flat space.
-        This sign is physically consistent with the Seeley--DeWitt interpretation:
-        positive curvature lowers the local spectral density, hence lowers the effective
-        temperature.
+        Positive scalar curvature increases $K(x,x;t)$ at order $t$ but decreases its logarithmic decay rate $u$.
+        The sign in~\eqref{eq:beta-def} concerns the decay rate, not a reduction of the heat-kernel density itself.
       \end{remark}
 
-      \begin{remark}[Status of $t_*$ and $\beta_0^{-1}$]
+      \begin{remark}[Status of a fixed diffusion scale]
         \label{rem:tstar}
-        The scale $t_*$ is a spectral admissibility parameter, not a physical temperature.
-        Its value is fixed by the spectral resolution of the relational system, as discussed
-        in~\cite{Beau2026a}.
-        The universal part $\beta_0^{-1} = 2/t_*$ is a UV quantity reflecting the spectral
-        density of states at the cutoff.
-        It is scheme-dependent and carries no intrinsic thermodynamic meaning at this stage.
-        Only the geometric correction $\frac{1}{6}R(x)$ is covariant and physically
-        significant: it encodes local curvature as a deviation from the flat-space multiplier.
+        Evaluating $b(x;t)$ at a chosen $t=t_*$ produces a scale-dependent spectral diagnostic.
+        The short-time expansion requires $t_*\mathcal{R}\ll1$.
+        No cited result currently identifies $t_*$ with an inverse physical temperature or with
+        $\ell_{\mathrm{sp}}^2$.
       \end{remark}
 
-      \begin{remark}[Decomposition structure]
-        \label{rem:decomp}
-        The decomposition~\eqref{eq:beta-decomp} has the form
-        \[
-          \beta(x)^{-1}
-          = \underbrace{\beta_0^{-1}}_{\text{universal (UV)}}
-          - \underbrace{\tfrac{1}{6}R(x)}_{\text{geometric correction}}.
-        \]
-        The geometric correction carries a negative sign: positive curvature reduces the
-        local spectral multiplier relative to the flat-space reference $\beta_0^{-1}$.
-        The correction is entirely controlled by the $a_2$ Seeley--DeWitt coefficient,
-        which is precisely the coefficient that generates the Einstein--Hilbert counterterm
-        via pole subtraction in the companion paper.
-        The two papers are therefore connected at the level of the same spectral coefficient.
-      \end{remark}
-
-  \section{Local spectral first law as a compatibility theorem}
-    \label{sec:first-law}
-
-    \subsection{Projected matter energy}
-      \label{subsec:projected-matter}
-
-      We define the projected matter energy on a spatial slice $\Sigma$ independently
-      of the spectral multiplier field.
-      Let $W_\Pi[g,\psi]$ be the effective matter action associated with the admissible
-      projected sector.
-      Its metric variation defines the projected stress tensor $T^{(\Pi)}_{\mu\nu}$ via
-      the standard covariant identity
-      \begin{equation}
-        \delta W_\Pi[g,\psi]
-        = \half\int_M \dd^4x\,\sqrt{g}\;T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}.
-        \label{eq:W-variation}
-      \end{equation}
-      On a chosen spatial slice $\Sigma$ with future-pointing unit normal $n^\mu$ and
-      local Killing vector $\xi^\mu$, the projected matter energy is defined by
-      \begin{equation}
-        E_\Pi[\Sigma]
-        \equiv
-        \int_\Sigma T^{(\Pi)}_{\mu\nu}\,\xi^\mu n^\nu\,\dd\Sigma,
-        \label{eq:E-Pi-def}
-      \end{equation}
-      and its metric variation is
-      \begin{equation}
-        \delta E_\Pi
-        = \half\int_\Sigma T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}\,\dd\Sigma.
-        \label{eq:delta-E-Pi}
-      \end{equation}
-      This definition is independent of $\beta(x)$ and of the heat-kernel structure.
-
-    \subsection{Local spectral first law}
-      \label{subsec:first-law}
-
-      \begin{proposition}[Local spectral first law --- compatibility condition]
-        \label{thm:first-law}
-        In the infrared regime $R\ell_\chi^2 \ll 1$, and at leading order in the
-        Seeley--DeWitt derivative expansion, the metric variation of the renormalized
-        spectral entropy satisfies
-        \begin{equation}
-          \delta\Spi^{\mathrm ren}
-          = \int_\Sigma \beta(x)^{-1}\,\delta E_\Pi(x)\,\dd^3 x
-          \label{eq:first-law}
-        \end{equation}
-        as a structural compatibility identity between the geometric and matter sides
-        of the variational problem.
-        This identity holds if and only if the geometry satisfies the Einstein equation.
-        It is therefore an equivalence condition, not an independent postulate.
-      \end{proposition}
-
-      \begin{proof}[Proof (compatibility argument)]
-          From~\cite{Beau2026h}, the infrared-dominant local part of $\delta\Spi^{\mathrm ren}$
-          contains the Einstein tensor:
-          \begin{equation}
-            \delta\Spi^{\mathrm ren}
-            \supset
-            \frac{1}{16\pi G_N}
-            \int_M \dd^4x\,\sqrt{g}\;G_{\mu\nu}\,\delta g^{\mu\nu}
-            + O(R^2\ell_\chi^2).
-            \label{eq:deltaS-EH}
-          \end{equation}
-          The Bianchi identity $\nabla^\mu G_{\mu\nu} = 0$ implies that the integrand
-          $G_{\mu\nu}\delta g^{\mu\nu}$ admits a local density representation on $\Sigma$
-          once $\delta g^{\mu\nu}$ is supported in a compact region.
-          On the matter side, from~\eqref{eq:delta-E-Pi}:
-          \begin{equation}
-            \delta E_\Pi
-            = \half\int_\Sigma T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}\,\dd\Sigma.
-            \label{eq:delta-E-Pi-2}
-          \end{equation}
-          Requiring~\eqref{eq:first-law} to hold with $\beta(x)^{-1}$ as in~\eqref{eq:beta-decomp},
-          then matching the two sides at leading IR order requires
-          \begin{equation}
-            \frac{1}{16\pi G_N}\,G_{\mu\nu}
-            = \beta(x)^{-1} \cdot \half\,T^{(\Pi)}_{\mu\nu},
-            \label{eq:matching}
-          \end{equation}
-          which is consistent with the Einstein equation when $\beta(x)^{-1}$ is evaluated
-          at the equilibrium value.
-          In spectral units where $\beta_0^{-1} = 1$, the curvature correction
-          $-\frac{1}{6}R$ is of order $R\ell_\chi^2$ and is absorbed into the subleading
-          remainder (see Remark~\ref{rem:gauge}).
-          The identity~\eqref{eq:first-law} is therefore a structural compatibility condition:
-          it holds if and only if the geometry satisfies the Einstein equation at leading
-          infrared order.
-          This establishes~\eqref{eq:first-law} as a compatibility condition rather than
-          a postulate.
-      \end{proof}
-
-      \begin{remark}[Nature of the identity]
-        \label{rem:identity-nature}
-        Equation~\eqref{eq:first-law} is not a definition of $\beta(x)$ from $\delta\Spi$
-        and $\delta E_\Pi$: both sides are independently defined.
-        $\beta(x)^{-1}$ is defined from the heat kernel via Definition~\ref{def:beta};
-        $\delta E_\Pi$ is defined from the matter action via~\eqref{eq:delta-E-Pi}.
-        The identity~\eqref{eq:first-law} is therefore a non-trivial constraint, not a
-        tautology.
-      \end{remark}
-
-  \section{Spectral equilibrium principle and Einstein equation}
+  \section{Joint spectral--matter stationarity}
     \label{sec:equilibrium}
 
-    \subsection{Formulation of the equilibrium principle}
-      \label{subsec:equilibrium-formulation}
+    \subsection{Independent matter functional}
 
-      We now impose the following variational principle.
+      Let $W_\Pi[g,\psi]$ be an effective matter functional on the same four-dimensional manifold.
+      We fix the stress-tensor convention by
+      \begin{equation}
+        \delta W_\Pi[g,\psi]
+        =\half\int_M\dd^4x\,\sqrt{g}\,
+        T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}.
+        \label{eq:W-variation}
+      \end{equation}
+      This equation defines a covariant action variation.
+      It does not define an energy on a spatial slice.
 
-      \begin{definition}[Spectral equilibrium]
+    \subsection{Infrared geometric input}
+
+      The independent input from Gravity~\cite{Beau2026h} is that the renormalized spectral variation has the
+      leading local form
+      \begin{equation}
+        \delta\Spi^{\mathrm{ren}}
+        =\int_M\dd^4x\,\sqrt{g}\,
+        \left[
+          \frac{1}{16\pi G_N}G_{\mu\nu}
+          +H_{\mu\nu}^{(4)}+H_{\mu\nu}^{\mathrm{nonloc}}
+        \right]\delta g^{\mu\nu},
+        \label{eq:deltaS-EH}
+      \end{equation}
+      where $H_{\mu\nu}^{(4)}$ contains local four-derivative terms and
+      $H_{\mu\nu}^{\mathrm{nonloc}}$ contains finite non-local terms.
+      In the weak-curvature infrared regime their contribution is subleading relative to the Einstein term.
+
+    \subsection{Stationarity theorem}
+
+      \begin{definition}[Joint spectral--matter functional]
         \label{def:equilibrium}
-        An admissible geometry $g$ is in \emph{spectral equilibrium} if it is a
-        stationary point of the functional
+        Define
         \begin{equation}
-          \mathcal{F}[g,\psi]
+          \Gamma_\Pi[g,\psi]
           \equiv
-          \Spi[g] - \vartheta_*^{-1}\,W_\Pi[g,\psi]
+          \Spi^{\mathrm{ren}}[g]-W_\Pi[g,\psi].
           \label{eq:F-functional}
         \end{equation}
-        under arbitrary compactly supported metric variations $\delta g^{\mu\nu}$,
-        with $\vartheta_*^{-1}$ a constant Lagrange multiplier.
       \end{definition}
 
-      The functional $\mathcal{F}$ is the spectral analogue of a free energy: it extremizes
-      entropic gain against the projected matter cost.
-      The Lagrange multiplier $\vartheta_*^{-1}$ enforces the constraint that the projected
-      matter content $W_\Pi$ is held fixed along admissible deformations.
-
-      \begin{remark}[Nature of $\vartheta_*^{-1}$]
-        \label{rem:beta-star}
-        The global multiplier $\vartheta_*^{-1}$ in~\eqref{eq:F-functional} is distinct from
-        the local field $\beta(x)^{-1}$ defined in Section~\ref{sec:spectral-locality}.
-        The local field encodes spatial curvature variation; the global multiplier encodes
-        the overall scale of the matter-geometry coupling.
-        Their relation is discussed in Section~\ref{sec:normalization}.
-      \end{remark}
-
-    \subsection{Euler--Lagrange equation}
-      \label{subsec:euler-lagrange}
-
-      \begin{theorem}[Einstein equation as spectral equilibrium]
+      \begin{theorem}[Einstein--matter equation from joint stationarity]
         \label{thm:einstein}
-        In the infrared-dominant regime $R\ell_\chi^2 \ll 1$, the Euler--Lagrange
-        equation of the spectral equilibrium condition $\delta\mathcal{F} = 0$ is
+        Assume~\eqref{eq:W-variation} and~\eqref{eq:deltaS-EH}.
+        At leading local infrared order, stationarity of $\Gamma_\Pi$ under arbitrary compactly supported metric
+        variations is equivalent to
         \begin{equation}
-          G_{\mu\nu} = 8\pi G_N\,T^{(\Pi)}_{\mu\nu},
+          G_{\mu\nu}=8\pi G_N T^{(\Pi)}_{\mu\nu}.
           \label{eq:einstein}
         \end{equation}
-        up to a cosmological term and corrections suppressed by $O(R\ell_\chi^2)$.
       \end{theorem}
 
       \begin{proof}
-        Varying $\mathcal{F}[g,\psi]$ with respect to $g^{\mu\nu}$:
+        Combining the two independently defined variations gives
         \begin{equation}
-          \delta\mathcal{F}
-          = \delta\Spi - \vartheta_*^{-1}\,\delta W_\Pi = 0.
+          \delta\Gamma_\Pi
+          =\int_M\dd^4x\,\sqrt{g}\,
+          \left[
+            \frac{1}{16\pi G_N}G_{\mu\nu}
+            -\half T^{(\Pi)}_{\mu\nu}
+          \right]\delta g^{\mu\nu}
+          +\delta\Gamma_\Pi^{\mathrm{sub}}.
           \label{eq:delta-F}
         \end{equation}
-        Substituting~\eqref{eq:deltaS-EH} and~\eqref{eq:W-variation}:
+        Neglecting the controlled subleading term $\delta\Gamma_\Pi^{\mathrm{sub}}$ in the stated infrared regime,
+        the fundamental lemma of the calculus of variations yields
         \begin{equation}
-          \frac{1}{16\pi G_N}\int_M\sqrt{g}\;G_{\mu\nu}\,\delta g^{\mu\nu}
-          = \frac{\vartheta_*^{-1}}{2}\int_M\sqrt{g}\;T^{(\Pi)}_{\mu\nu}\,\delta g^{\mu\nu}
-          + O(R\ell_\chi^2).
-          \label{eq:EL-integrated}
-        \end{equation}
-        Since this holds for arbitrary compactly supported $\delta g^{\mu\nu}$, the
-        fundamental lemma of the calculus of variations gives pointwise:
-        \begin{equation}
-          \frac{1}{16\pi G_N}\,G_{\mu\nu}
-          = \frac{\vartheta_*^{-1}}{2}\,T^{(\Pi)}_{\mu\nu}
-          + O(R\ell_\chi^2).
+          \frac{1}{16\pi G_N}G_{\mu\nu}
+          =\half T^{(\Pi)}_{\mu\nu}.
           \label{eq:EL-pointwise}
         \end{equation}
-        For $\vartheta_*^{-1} = 1$ (see Section~\ref{sec:normalization}), this gives
-        \begin{equation}
-          G_{\mu\nu} = 8\pi G_N\,T^{(\Pi)}_{\mu\nu} + O(R\ell_\chi^2).
-          \label{eq:einstein-proof}
-        \end{equation}
+        Dividing by $(16\pi G_N)^{-1}$ gives~\eqref{eq:einstein}.
       \end{proof}
 
-      \begin{remark}[Absence of causal assumptions]
-        \label{rem:no-horizon}
-        The derivation requires no horizon structure, no local Rindler observers,
-        no Raychaudhuri equation, and no assumption on causal structure.
-        The field equation emerges from a purely variational condition on the spectral
-        functional $\mathcal{F}$, defined on Riemannian manifolds.
-        Its extension to Lorentzian signature is a separate question, discussed in
-        Section~\ref{sec:discussion}.
-      \end{remark}
+      The theorem is a joint effective-action statement.
+      Calling its stationarity ``equilibrium'' would add an interpretation not used in the proof.
 
-  \section{Normalization of the factor \texorpdfstring{$8\pi G$}{8piG}}
+  \section{Normalization and coupling status}
     \label{sec:normalization}
 
-    \subsection{Two independent normalizations}
-      \label{subsec:two-norms}
+    \subsection{Correct normalization of the Einstein coefficient}
 
-      The factor $8\pi G$ in equation~\eqref{eq:einstein} is entirely determined by
-      two independent normalization conventions:
-
-      \paragraph{Geometric normalization.}
-        The companion paper~\cite{Beau2026h} establishes that the infrared-dominant local
-        part of the renormalized spectral entropy variation contains the Einstein tensor
-        with coefficient $1/(16\pi G_N)$:
+      The two coefficients entering~\eqref{eq:EL-pointwise} are
       \begin{equation}
-        \frac{\delta\Spi^{\mathrm ren}}{\delta g^{\mu\nu}}\bigg|_{\mathrm IR,\,local}
-        = \frac{1}{16\pi G_N}\,G_{\mu\nu}.
+        c_{\mathrm{EH}}=(16\pi G_N)^{-1},
+        \qquad
+        c_T=\half.
         \label{eq:geom-norm}
-        \end{equation}
-        This coefficient arises from the $a_2$ pole subtraction in the zeta-regularized
-        determinant and the induced-gravity identification $G_N \sim 16\pi^2\ell_\chi^2$.
-
-      \paragraph{Matter normalization.}
-        The projected stress tensor is defined via the standard variational identity
-      \begin{equation}
-        T^{(\Pi)}_{\mu\nu} = \frac{2}{\sqrt{g}}
-        \frac{\delta W_\Pi}{\delta g^{\mu\nu}},
-        \label{eq:matter-norm}
-        \end{equation}
-        which carries the universal factor $2$ by convention.
-        Equivalently, $\delta W_\Pi = \half\int\sqrt{g}\,T^{(\Pi)}_{\mu\nu}\delta g^{\mu\nu}$.
-
-  \subsection{The factor $8\pi G$ as a product of normalizations}
-    \label{subsec:8piG}
-
-    \begin{proposition}[Normalization identity]
-      \label{prop:normalization}
-      The equilibrium condition $\delta\mathcal{F} = 0$ with $\vartheta_*^{-1} = 1$ gives
-      \begin{equation}
-        \frac{1}{16\pi G_N}\,G_{\mu\nu}
-        = \half\,T^{(\Pi)}_{\mu\nu},
       \end{equation}
-      which is equivalent to $G_{\mu\nu} = 8\pi G_N\,T^{(\Pi)}_{\mu\nu}$.
-      The numerical factor $8\pi G_N$ arises as the unique product of two independent
-      normalizations:
+      Therefore the coefficient multiplying $T^{(\Pi)}_{\mu\nu}$ after solving for $G_{\mu\nu}$ is
       \begin{equation}
-        8\pi G_N
-        = \frac{1}{(16\pi G_N)^{-1} \times \tfrac{1}{2}}
-        = \frac{1}{(16\pi G_N)^{-1}} \cdot 2
-        \cdot 1,
+        \frac{c_T}{c_{\mathrm{EH}}}
+        =\frac{\half}{(16\pi G_N)^{-1}}
+        =8\pi G_N.
         \label{eq:8piG-factorization}
       \end{equation}
-      where the factor $(16\pi G_N)^{-1}$ comes from the geometric normalization
-      \eqref{eq:geom-norm} and the factor $\frac{1}{2}$ from the stress-tensor
-      definition \eqref{eq:matter-norm}.
-      More transparently: from $\frac{1}{16\pi G_N}G_{\mu\nu} = \frac{1}{2}T_{\mu\nu}$
-      one reads off directly $G_{\mu\nu} = 8\pi G_N T_{\mu\nu}$.
-      No other factor enters.
-    \end{proposition}
+      This is a ratio, not the inverse of the product $c_Tc_{\mathrm{EH}}$.
 
-  \subsection{Status of $\vartheta_*^{-1} = 1$}
-    \label{subsec:beta-star-status}
+      \begin{proposition}[Normalization identity]
+        \label{prop:normalization}
+        With the conventions~\eqref{eq:W-variation} and~\eqref{eq:deltaS-EH}, the stationarity equation has the
+        standard Einstein coefficient $8\pi G_N$.
+      \end{proposition}
 
-    Setting $\vartheta_*^{-1} = 1$ in the constrained functional~\eqref{eq:F-functional}
-    is not a dynamical assumption.
-    It is a normalization choice equivalent to measuring energy in units where the
-    spectral entropy and the projected matter functional are coupled with unit strength.
-    Concretely, it amounts to absorbing $\vartheta_*^{-1}$ into the definition of
-    $T^{(\Pi)}_{\mu\nu}$ as the effective stress tensor of the admissible projected
-    sector, so that $W_\Pi$ is defined with the appropriate normalization.
+    \subsection{Optional dimensionless relative coupling}
 
-    Alternatively, one may retain $\vartheta_*^{-1}$ as a free parameter and interpret
-    $\vartheta_*^{-1} \neq 1$ as a departure from canonical spectral equilibrium.
-    In that case,~\eqref{eq:EL-pointwise} generalizes to
-    $G_{\mu\nu} = 8\pi G_N\,\vartheta_*^{-1}\,T^{(\Pi)}_{\mu\nu}$,
-    which describes an off-equilibrium spectral geometry with an effective renormalization
-    of the matter coupling.
-
-  \begin{remark}[Off-equilibrium departure as coupling renormalization, not a fluid]
-    \label{rmk:coupling-renormalization}
-    The off-equilibrium response can be written
-    \begin{equation}
-      G_{\mu\nu}
-      = 8\pi G_N\bigl[T^{(\Pi)}_{\mu\nu} + (\vartheta_*^{-1}-1)\,T^{(\Pi)}_{\mu\nu}\bigr],
-      \label{eq:coupling-renorm}
-    \end{equation}
-    so the departure from canonical equilibrium acts as a multiplicative renormalization of the coupling to
-    the same matter content, never as an independent second fluid.
-    A constant $\vartheta_*^{-1}$ is degenerate with the calibration of $G_N$ and is therefore
-    unobservable.
-    Any observable content of the off-equilibrium reading resides entirely in a possible slow dependence
-    $\vartheta_*^{-1}(\mathcal{I})$ on an ordering parameter $\mathcal{I}$ of the effective description ---
-    not a fundamental time --- which would require a dynamical closure external to the present equilibrium
-    functional, of the kind that arises in the cosmological branch~\cite{Beau2026d}.
-  \end{remark}
-
-  \begin{remark}[Single-determinant reading of $\vartheta_*^{-1}=1$ in the gauge sector]
-    \label{rmk:single-determinant}
-    In the spectrally closed gauge sector the canonical value $\vartheta_*^{-1}=1$ acquires a status stronger
-    than a normalization choice.
-    When the projected matter functional $W_\Pi$ is identified, with the appropriate normalization, with the
-    $a_4$ gauge sub-functional of the same spectral determinant, the relative weight of the geometric and
-    matter responses is fixed by that single determinant: the gauge--gravity synthesis~\cite{Beau2026q13}
-    derives $8\pi G_N = c_{\mathrm{YM}}/c_{\mathrm{EH}}$ from the $a_2$ and $a_4$ Seeley--DeWitt coefficients
-    of one $\log\det'\Ag$, with no independent multiplier, building on the vertical variation
-    of~\cite{Beau2026q12}.
-    In this identification $\vartheta_*^{-1}=1$ is the single-determinant value, and a departure
-    $\vartheta_*^{-1}\neq1$ is an external deformation of the determinant-fixed relative normalization rather than
-    a free Lagrange multiplier.
-    The promotion is conditional on the identification: for a generic or fermionic $W_\Pi$, not captured by
-    the $a_4$ level alone, $\vartheta_*^{-1}=1$ remains the normalization choice described above.
-    The reconciliation is one of conventions only: the stress tensor of~\cite{Beau2026q13} is defined
-    through $(1/\sqrt{g})\,\delta(\int\mathrm{Tr}\,\Omega_A^2)/\delta g^{\mu\nu}$, differing from
-    $T^{(\Pi)}_{\mu\nu} = (2/\sqrt{g})\,\delta W_\Pi/\delta g^{\mu\nu}$ by the factor two and by the sign
-    absorbed into that definition, with no physical divergence between the two conventions.
-    Because the identification splits the joint functional by heat-kernel order ($a_2$ geometric, $a_4$
-    gauge), the two sides remain independently computable and the non-tautology of the first law
-    (Remark~\ref{rem:identity-nature}) is preserved.
-  \end{remark}
-
-  \subsection{Relation between $\vartheta_*^{-1}$ and the local field $\beta(x)^{-1}$}
-    \label{subsec:beta-relation}
-
-    The local field $\beta(x)^{-1} = \beta_0^{-1} - \frac{1}{6}R(x)$
-    and the global Lagrange multiplier $\vartheta_*^{-1}$ play distinct roles.
-    The local field encodes spatially varying curvature corrections to the spectral
-    multiplier; the global multiplier controls the overall strength of the
-    entropy-matter coupling in the equilibrium functional.
-
-    Their connection arises when the equilibrium condition is imposed locally rather
-    than globally.
-    Requiring $\delta\mathcal{F}$ to vanish not only for global metric variations but
-    also for local ones supported near a point $x$ replaces $\vartheta_*^{-1}$ by
-    $\beta(x)^{-1}$ in~\eqref{eq:EL-pointwise}, yielding
-    \begin{equation}
-      G_{\mu\nu}(x)
-      = 8\pi G_N\,\beta(x)^{-1}\,T^{(\Pi)}_{\mu\nu}(x) + O(R\ell_\chi^2).
-      \label{eq:local-einstein}
-    \end{equation}
-    To display the structure of the curvature correction transparently, we
-    choose \emph{spectral units} in which $\beta_0^{-1} = 1$.
-
-    \begin{remark}[Gauge choice $\beta_0^{-1} = 1$ and the spectral scale $t_*$]
-      \label{rem:gauge}
-      Setting $\beta_0^{-1} = 1$ corresponds, via $\beta_0^{-1} = 2/t_*$, to the
-      choice $t_* = 2$ in spectral units.
-      This is a \emph{gauge choice for the admissibility scale}: it fixes the unit
-      of spectral resolution but does not affect any physical observable.
-      In particular, the induced Newton coupling $G_N \sim 16\pi^2 \ell_\chi^2$
-      established in~\cite{Beau2026h} is independent of $t_*$, since it arises from
-      the $a_2$ pole residue, which is a UV quantity fixed by the renormalization scheme.
-
-      In these units, the local field simplifies to
+      One may instead study
       \begin{equation}
-        \beta(x)^{-1} = 1 - \frac{1}{6}R(x) + O(\nabla^2 R),
-        \label{eq:beta-spectral-units}
+        \Gamma_{\Pi,\kappa}=\Spi^{\mathrm{ren}}-\kappa W_\Pi,
+        \qquad [\kappa]=1.
+        \label{eq:matter-norm}
       \end{equation}
-      and the locally imposed equilibrium condition~\eqref{eq:local-einstein} becomes
+      Its leading stationarity equation is
       \begin{equation}
-        G_{\mu\nu}(x)
-        = 8\pi G_N\!\left(1 - \tfrac{1}{6}R(x)\right) T^{(\Pi)}_{\mu\nu}(x)
-        + O(R\ell_\chi^2).
-        \label{eq:local-einstein-units}
+        G_{\mu\nu}=8\pi G_N\kappa T^{(\Pi)}_{\mu\nu}.
+        \label{eq:coupling-renorm}
       \end{equation}
-      At zeroth order in $R\ell_\chi^2$, this reduces to the standard Einstein equation.
-      The correction $-\frac{1}{6}R(x)$ is of order $R\ell_\chi^2$ and is absorbed into
-      the $O(R\ell_\chi^2)$ remainder in the weak-curvature regime.
-      Changing the gauge (i.e.\ changing $t_*$) rescales $\beta_0^{-1}$ and the
-      correction simultaneously, leaving the physical content of~\eqref{eq:local-einstein}
-      unchanged.
-    \end{remark}
+      The constant $\kappa$ is a relative normalization or coupling.
+      It is not an inverse temperature and does not parameterize departure from equilibrium.
 
-  \section{Relation to previous thermodynamic derivations}
+      \begin{remark}[Single-determinant sector]
+        \label{rmk:single-determinant}
+        Q12 and Q13~\cite{Beau2026q12,Beau2026q13} investigate whether geometric and gauge terms arise as different
+        Seeley--DeWitt orders of one joint determinant.
+        If a common normalization is established there, it may select $\kappa$ in that restricted sector.
+        This conditional identification does not establish a thermodynamic temperature and is not assumed in
+        Theorem~\ref{thm:einstein}.
+      \end{remark}
+
+  \section{Why a thermodynamic first law does not yet follow}
+    \label{sec:first-law}
+
+    \subsection{Dimensional obstruction}
+
+      In natural units a physical temperature and energy have dimension $L^{-1}$, while inverse temperature has
+      dimension $L$.
+      The spectral rate $u$ has dimension $L^{-2}$ and the normalized response $b$ is dimensionless.
+      No identification among these quantities is dimensionally available without an additional scale and a physical
+      calibration law.
+
+      \begin{proposition}[No temperature from the diagonal kernel alone]
+        \label{thm:first-law}
+        The data $(\Ag,K,t)$ and the definition $u=-\partial_t\log K$ do not determine a physical temperature,
+        inverse temperature, heat, or energy density.
+      \end{proposition}
+
+      \begin{proof}
+        The construction fixes only a Laplace-eigenvalue scale $[u]=L^{-2}$ and its dimensionless normalized response.
+        A physical temperature requires both a quantity of dimension $L^{-1}$ and an operational thermal
+        interpretation.
+        Neither is supplied by the diagonal kernel.
+      \end{proof}
+
+    \subsection{Action variation is not an energy variation}
+
+      Equation~\eqref{eq:W-variation} is a four-dimensional action variation.
+      An energy on a hypersurface would require a Lorentzian geometry, a time flow, a unit normal, a measure on the
+      hypersurface, and control of how all these structures vary with the metric.
+      Restricting~\eqref{eq:W-variation} to a spatial slice does not produce such a variation.
+
+      For reference, a genuine local Clausius relation would have the schematic dimensionally homogeneous form
+      \begin{equation}
+        \delta S
+        =\int_\Sigma\beta_{\mathrm{phys}}(x)\,\delta q(x)\,\dd\Sigma,
+        \qquad
+        [\beta_{\mathrm{phys}}]=L,
+        \quad
+        [\delta q]=L^{-4}.
+        \label{eq:first-law}
+      \end{equation}
+      No $\beta_{\mathrm{phys}}$ or heat density $\delta q$ is derived here.
+
+    \subsection{Integrability requirement}
+
+      Carath\'{e}odory's formulation makes the existence of entropy an integrability question for a Pfaffian heat
+      form~\cite{Caratheodory1909}.
+      Roberts recently expressed this structure as a gauge connection on a work bundle~\cite{Roberts2026Heat}.
+      If $\xi$ is an independently defined heat one-form and $H=\ker\xi$ the adiabatic connection, local functions
+      $T$ and $S$ satisfying
+      \begin{equation}
+        \xi=T\,\dd S
+        \label{eq:delta-E-Pi}
+      \end{equation}
+      exist precisely under the corresponding local integrability or flatness condition.
+      Roberts also relates the result to Jauch's conservation proposal~\cite{Jauch1972,Roberts2026Origin}.
+
+      Cosmochrony does not yet provide the independent one-form $\xi_\Pi$ required to apply this theorem.
+      Defining $\xi_\Pi\equiv T\,\dd\Spi$ would make integrability tautological and would not derive a physical heat
+      form.
+
+      \begin{remark}[Local and global obstructions]
+        \label{rem:identity-nature}
+        Even a locally flat adiabatic connection may have non-trivial global holonomy.
+        A thermodynamic completion must therefore distinguish local integrability from global equilibrium.
+        This thermal connection would also be distinct from the internal gauge connection associated with the
+        non-injective projection fibres of Cosmochrony.
+      \end{remark}
+
+    \subsection{Why a local curvature multiplier is not generated by local variation}
+
+      Compactly supported variations already yield the pointwise equation~\eqref{eq:EL-pointwise} with the same
+      constant coupling $\kappa$.
+      They do not replace $\kappa$ by $b(x;t_*)$ or by $u(x;t_*)$.
+      Write the matter functional locally as
+      $W_\Pi=\int_M\dd^4x\,\sqrt{g}\,\mathcal{L}_\Pi$.
+      A candidate functional with a metric-dependent local coupling would instead satisfy schematically
+      \begin{equation}
+        \delta\!\left(
+          \Spi^{\mathrm{ren}}
+          -\int_M\dd^4x\,\sqrt{g}\,b[g]\mathcal{L}_\Pi
+        \right)
+        =\delta\Spi^{\mathrm{ren}}
+        -\int_M\dd^4x\,b[g]\,\delta\!\left(\sqrt{g}\mathcal{L}_\Pi\right)
+        -\int_M\dd^4x\,\sqrt{g}\mathcal{L}_\Pi\,\delta b[g].
+        \label{eq:local-einstein}
+      \end{equation}
+      The last term cannot be discarded because $b[g]$ depends on $R[g]$.
+
+      \begin{remark}[Normalization is not a gauge transformation]
+        \label{rem:gauge}
+        Choosing units in which a numerical reference value equals one is harmless, but it does not convert a
+        dimensionful field into a dimensionless coupling.
+        The invariant normalized object is $b=u/u_0$, whose leading correction is $-tR/12$.
+      \end{remark}
+
+  \section{Relation to neighbouring approaches}
     \label{sec:relation-jacobson}
 
-    \subsection{Jacobson's derivation}
+    \subsection{Jacobson's horizon thermodynamics}
       \label{subsec:jacobson}
 
-      Jacobson~\cite{Jacobson1995} derived Einstein's equation by applying the
-      Clausius relation $\delta S = \delta Q / T$ to all local Rindler horizons.
-      The key inputs are:
-      (i) entropy proportional to horizon area, $S = A/(4G)$;
-      (ii) temperature given by the Unruh formula, $T = a/(2\pi)$;
-      (iii) heat flow $\delta Q = \int T_{\mu\nu}\chi^\mu\dd\Sigma^\nu$ across the horizon;
-      (iv) the Raychaudhuri equation linking area change to matter flux.
+      Jacobson derives the Einstein equation from the Clausius relation on local Rindler horizons, using horizon area,
+      Unruh temperature, matter heat flux, and the Raychaudhuri equation~\cite{Jacobson1995}.
+      None of those thermodynamic ingredients appears in Theorem~\ref{thm:einstein}.
+      The shared output is the Einstein equation; the premises and logical route are different.
 
-      The present derivation parallels Jacobson's logical structure --- entropy, temperature,
-      energy, equilibrium condition --- but replaces each ingredient with a spectral
-      counterpart:
-      (i) entropy is $\Spi = \frac{1}{2}\log\det' A_g$ (not an area functional);
-      (ii) temperature is the local spectral multiplier $\beta(x)^{-1}$ (not Rindler);
-      (iii) energy is the projected matter content $E_\Pi$ (not a horizon heat flux);
-      (iv) equilibrium is a variational extremum (not a horizon balance condition).
-
-      As a consequence, the present derivation is independent of the causal structure of
-      spacetime: it holds on Riemannian manifolds and does not require a Lorentzian
-      horizon.
-      The extension to Lorentzian signature is discussed in Section~\ref{sec:discussion}.
-
-    \subsection{Analogy with local Unruh temperature}
+    \subsection{Carath\'{e}odory, Jauch, and Roberts}
       \label{subsec:unruh-analogy}
 
-      In the Unruh effect, the local temperature experienced by a Rindler observer with
-      proper acceleration $a$ is $T_{\mathrm Unruh} = a/(2\pi)$.
-      This is kinematic: it depends on the observer's trajectory.
+      Carath\'{e}odory treats entropy and temperature through local integrability of the heat form.
+      Jauch seeks their origin in a conservation statement, and Roberts reconstructs that proposal using connection
+      geometry~\cite{Caratheodory1909,Jauch1972,Roberts2026Heat,Roberts2026Origin}.
+      This line supplies a precise test for a future thermodynamic completion of Cosmochrony.
+      It does not identify the thermodynamic work bundle with the internal projection bundle.
 
-      The local multiplier field $\beta(x)^{-1} = \beta_0^{-1} - \frac{1}{6}R(x)$
-      has a formally analogous structure: a universal part $\beta_0^{-1}$ plus a local
-      correction.
-      However, the analogy is purely formal.
-      The correction $-\frac{1}{6}R(x)$ is geometric (curvature-driven), not kinematic
-      (acceleration-driven).
-      No horizon is present or implied.
-      The analogy should not be taken to mean that $\beta(x)^{-1}$ is a physical
-      temperature in the Unruh sense: it is a spectral multiplier defined from
-      heat-kernel data, not from a quantum state on a wedge.
-
-    \subsection{Wald's Noether charge entropy}
+    \subsection{Wald entropy}
       \label{subsec:wald}
 
-      Wald~\cite{Wald1993} showed that black hole entropy for higher-derivative theories
-      of gravity is given by a Noether charge, not by the area.
-      The present framework is consistent with Wald's result in the following sense:
-      the spectral entropy $\Spi$ is defined from the full operator $\Ag$, which encodes
-      higher-derivative geometric information through the $a_4$ and higher Seeley--DeWitt
-      coefficients.
-      In the UV regime (or for $\xi \neq 0$), the dominant contribution to $\Spi$ shifts
-      from the $a_2$-derived Einstein term to the $a_4$-derived quadratic curvature terms,
-      whose variation would give a higher-derivative stress tensor consistent with Wald's
-      formula.
-      A detailed comparison lies beyond the scope of the present paper.
+      Wald identifies black-hole entropy with a Noether charge for diffeomorphism-invariant gravitational
+      theories~\cite{Wald1993}.
+      The present paper neither introduces a horizon nor evaluates a Noether charge.
+      Higher-curvature terms in the spectral determinant may be studied with Wald's formalism after a Lorentzian
+      action and a horizon are specified, but no equality of entropies is asserted here.
 
-    \subsection{Quantum relative entropy derivations}
+    \subsection{Quantum relative entropy}
       \label{subsec:relative-entropy}
 
-      Dorau and Much~\cite{DorauMuch2026} recently derived the semiclassical Einstein equations from
-      quantum information theory, replacing Jacobson's thermodynamic entropy by the Araki--Uhlmann
-      relative entropy between the vacuum and a coherent excitation of a scalar field on a bifurcate
-      Killing horizon.
-      Their chain ``relative entropy $\to$ energy flux $\to$ area variation $\to$ Einstein
-      equation'' is the quantum-field-theoretic counterpart of the tradition to which the present
-      derivation belongs.
-      The present framework is conceptually related but differs at the primitive level: the
-      fundamental quantity is not the relative entropy between two quantum states, but the projective
-      spectral entropy $\Spi[g] = \half\log\det' \Ag$ associated with the structurally non-injective
-      projection $\Pi$.
-      Gravity arises as the metric variation of this functional, and the derivation assumes neither
-      an underlying quantum field theory nor a horizon.
-
-      \begin{remark}[Relative form of the spectral entropy]
+      Dorau and Much derive semiclassical Einstein equations from quantum relative entropy for quantum fields on a
+      horizon-bearing background~\cite{DorauMuch2026}.
+      The present primitive is instead a spectral determinant of an admissible operator.
+      A relative determinant
+      \begin{equation}
+        \Spi(g\Vert g_0)
+        =\half\log\frac{\det'(\Ag/\mu^2)}{\det'(A_{g_0}/\mu^2)}
         \label{rmk:relative-spi}
-        The correspondence with~\cite{DorauMuch2026} is made direct by a relative form of the
-        spectral entropy.
-        Taking the effective vacuum metric $g_0^{\mu\nu} = 2\eta^{\mu\nu}$, reconstructed in the
-        emergent geometry sub-programme as a \emph{derived} reference rather than a postulated one,
-        one defines
-        \[
-          \Spi(g \Vert g_0) = \half\log\frac{\det' A_g}{\det' A_{g_0}},
-        \]
-        finite by construction, whose reference term recovers the absolute functional
-        $\Spi[g] = \half\log\det' \Ag$: the relative form extends the fundamental one without
-        replacing it.
-        Here $g_0$ plays the role of the Dorau--Much vacuum and $g$ that of the excited state.
-        The associated monotonicity is carried, rigorously, by the underlying code-layer quantity:
-        the relative projection entropy of the observable measures $\nu$ obeys the data-processing
-        inequality under coarse-graining of $\Pi$, the classical analogue of the monotonicity of the
-        quantum relative entropy under channels.
-      \end{remark}
+      \end{equation}
+      is well defined when the determinant ratio is controlled, but it is not thereby an Araki--Uhlmann entropy.
 
       \begin{remark}[Entropy nomenclature]
         \label{rmk:entropy-nomenclature}
-        Three distinct entropies occur across the programme and are not identified here.
-        The present $\Spi[g] = \half\log\det'\Ag$ is the spectral-geometric entropy of the admissible
-        Laplacian.
-        It differs from the history-branching entropy $S_{\mathrm{hist}}$ of the cosmological
-        sector~\cite{Beau2026d} and from the measure-theoretic projection entropy of the emergence
-        criterion~\cite{Beau2026l}.
-        The only link asserted above is the structural one of Remark~\ref{rmk:relative-spi} --- the
-        data-processing monotonicity shared with the code-layer relative entropy --- and no identification
-        among the three is claimed.
+        The spectral functional $\Spi$, the history-branching entropy of the cosmological sector~\cite{Beau2026d},
+        and the measure-theoretic projection entropy of the emergence criterion~\cite{Beau2026l} are distinct.
+        No thermodynamic identification among them is made here.
       \end{remark}
 
   \section{Discussion and outlook}
     \label{sec:discussion}
 
-    \subsection{Summary}
+    \subsection{What is established}
       \label{subsec:summary}
 
-      We have shown that the projective spectral entropy functional $\Spi[g]$ admits
-      a natural local thermodynamic structure.
-      The diagonal heat kernel defines a local spectral energy density $u(x;t)$ whose
-      Seeley--DeWitt expansion yields a local multiplier field
-      $\beta(x)^{-1} = \beta_0^{-1} - \frac{1}{6}R(x) + O(\nabla^2 R)$
-      decomposed into a universal UV part and a geometric curvature correction.
+      The paper establishes three statements.
+      First, the local spectral rate has a controlled short-time curvature expansion and a dimensionless normalized
+      response $b=1-tR/12+\cdots$.
+      Second, joint stationarity of the renormalized spectral functional and an independently defined matter
+      functional yields the Einstein--matter equation at leading infrared order.
+      Third, the numerical coefficient $8\pi G_N$ is the ratio of the two variation coefficients.
 
-      The local spectral first law $\delta\Spi = \int\beta^{-1}\delta E_\Pi$ is
-      established as a compatibility theorem, not a definition: both sides are
-      independently defined from spectral and matter data respectively.
-
-      The spectral equilibrium principle --- extremizing $\Spi$ at fixed projected
-      matter content --- yields Einstein's equation $G_{\mu\nu} = 8\pi G_N T_{\mu\nu}$
-      as an Euler--Lagrange condition.
-      The factor $8\pi G_N$ is fixed by the product of two universal normalizations from
-      the geometric and matter sides, with no free parameter.
-
-    \subsection{Limitations}
+    \subsection{What remains open}
       \label{subsec:limitations}
 
-      \paragraph{Euclidean setting.}
-        The entire construction is performed on Riemannian manifolds.
-        The extension to Lorentzian signature requires analytic continuation of the heat
-        kernel, control over the retarded Green function, and a definition of $u(x;t)$ in
-        the hyperbolic setting.
-        This is the content of the Lorentzian completion program described in~\cite{Beau2026h}.
+      A physical matter sector $W_\Pi[g,\psi]$ must still be constructed for each projected species.
+      The Lorentzian definition of energy and heat must be supplied independently of the Euclidean determinant.
+      A thermodynamic bridge requires a heat one-form, an operational temperature calibration, a statistical measure,
+      and an integrability analysis.
+      Higher-derivative and non-local responses must be retained outside the weak-curvature infrared regime.
 
-      \paragraph{Static foliation.}
-        The projected matter energy $E_\Pi[\Sigma]$ is defined on a fixed spatial slice.
-        A fully covariant formulation would require a foliation-independent definition,
-        likely via the covariant phase space formalism.
+    \subsection{Interpretive outlook}
+      \label{subsec:outlook}
 
-      \paragraph{Higher Seeley--DeWitt corrections.}
-        The equilibrium condition~\eqref{eq:einstein} holds at leading IR order.
-        In the regime $R\ell_\chi^2 \sim 1$, higher Seeley--DeWitt contributions (from $a_4$
-        and beyond) become comparable, and the field equation receives quadratic curvature
-        corrections of the form $G_{\mu\nu} + \ell_\chi^2 B_{\mu\nu} + \cdots =
-  8\pi G_N T_{\mu\nu}$.
-
-      \paragraph{Matter coupling.}
-        The projected stress tensor $T^{(\Pi)}_{\mu\nu}$ is defined formally from $W_\Pi$.
-        An explicit construction of $W_\Pi$ in terms of standard matter fields requires
-        identifying the admissible projected sector for each matter species.
-        This is addressed in the Cosmochrony framework~\cite{Cosmochrony} but not derived
-        here.
-
-      \begin{remark}[Spectral silence of the radiation era in the $a_2$ channel]
-        \label{rmk:radiation-silence}
-        The covariant part of the local multiplier field $\beta(x)^{-1} = \beta_0^{-1} - \tfrac16 R(x)$ is
-        governed by the on-shell trace $R = 8\pi G_N(\rho - 3p)$.
-        For conformal (radiation) matter $p = \rho/3$ this trace vanishes exactly, so $\beta(x)^{-1}$ sits at
-        its flat-space reference $\beta_0^{-1}$ throughout the radiation era: the geometric $a_2$ channel is
-        spectrally silent for a traceless source.
-        The first covariant departure appears only at matter domination, where $R = 8\pi G_N\,\rho_m > 0$;
-        the radiation--matter transition is thereby marked, not derived, by the corpus objects.
-        The statement is exact at the classical equation-of-state level; the quantum trace of the gauge
-        sector is the induced logarithmic anomaly carried by the $a_4$ coefficient~\cite{Beau2026q13}, an
-        infrared-small correction that is flagged rather than developed here.
-      \end{remark}
-
-  \subsection{Outlook}
-    \label{subsec:outlook}
-
-    The present framework opens several directions.
-    First, the Lorentzian completion of Paper~3 will test whether the equilibrium
-    condition survives analytic continuation and whether it reproduces linearized
-    gravitational wave propagation.
-    Second, the higher Seeley--DeWitt regime ($a_4$ dominant, $\xi = 1/6$) may
-    provide a spectral derivation of higher-curvature gravity theories.
-    Third, the connection between the local field $\beta(x)^{-1}$ and the local
-    Unruh effect could be made precise if a Lorentzian horizon is introduced as a
-    special case of the general framework.
+      \textbf{Interpretation, not derived result.}
+      Spectral stationarity may eventually be understood as an equilibrium principle if the missing thermodynamic
+      structures are constructed and shown to select the same stationary geometries.
+      At present the defensible reading is narrower: the admissible spectral operator supplies a geometric functional,
+      and coupling that functional to projected matter reproduces the infrared Einstein response.
+      This identifies where a thermodynamic interpretation could attach without treating analogy as derivation.
 
   \bibliographystyle{plain}
   \bibliography{cosmochrony-bibliography,external-refs}
