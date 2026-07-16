@@ -39,8 +39,8 @@ The coefficient is the ratio
 \]
 
 This is a conditional joint geometric--matter variational statement.
-Its spectral input depends on a regulator and finite matching prescription that must be
-fixed in the companion Gravity paper.
+The companion Gravity paper separates the spectral-cutoff and zeta sectors and treats the
+finite Einstein coefficient as a matching datum.
 It is not, by itself, a thermodynamic equilibrium theorem.
 
 ## Local spectral response
