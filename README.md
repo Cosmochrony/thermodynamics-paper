@@ -3,8 +3,8 @@
 This repository contains the source of *Einstein--Matter Coupling from Spectral
 Stationarity: A Conditional Variational Result and the Open Thermodynamic Bridge*.
 
-Version 2.0 separates a conditional variational identity from thermodynamic claims that
-were not established in version 1.1.
+This note separates a conditional variational identity from a thermodynamic reading that is
+not established.
 
 ## Conditional variational result
 
@@ -64,19 +64,7 @@ The quantity \(b\) is a dimensionless curvature response.
 Neither \(u\) nor \(b\) is identified with a physical temperature, inverse
 temperature, or energy density.
 
-## Status correction relative to version 1.1
-
-Version 2.0 withdraws the following claims of version 1.1:
-
-1. that \(-\partial_t\log K\) is a local energy density or temperature;
-2. that the diagonal heat kernel establishes a local first law;
-3. that local metric variations replace a constant coupling by a
-   curvature-dependent temperature field;
-4. that the variational Einstein equation is thereby proved to be an equilibrium
-   equation of state.
-
-The corrected paper explains the additional structures required for a thermodynamic
-completion: an independently defined heat one-form, a Lorentzian energy notion, an
+A thermodynamic completion requires: an independently defined heat one-form, a Lorentzian energy notion, an
 operational temperature calibration, and an integrability theorem establishing
 \(\delta Q=T\,\mathrm dS\).
 
